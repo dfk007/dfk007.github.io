@@ -1,0 +1,3 @@
+# Specify the path to your custom CSS file
+styles:
+  - /css/style.css

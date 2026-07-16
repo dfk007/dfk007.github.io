@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>Daud Farzand Portfolio Website</title>
+  <link href="https:/cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet"">
+    <link
+      crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
+    integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" rel=" stylesheet" />
+
+  <!-- Update these with your own fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap"
+    rel="stylesheet">
+
+  <link href="css/style.css" rel="stylesheet">
+  <link href="https://s.pageclip.co/v1/pageclip.css" media="screen" rel="stylesheet">
+  <script src="/js/dark.js" type="module"></script>
+</head>
+
+<body>
+<!--    dark-mode-toggle-->
+<dark-mode-toggle></dark-mode-toggle>
+<!--    -->
+  <header>
+
+
+    <div class="logo">
+      <!--           <img src="img/devdaud.png" alt=""> -->
+
+      <a href="#home"><img alt="" src="img/devdaud.png"></a>
+
+    </div>
+
+    <button aria-label="toggle navigation" class="nav-toggle">
+      <span class="hamburger"></span>
+    </button>
+    <nav class="nav">
+      <ul class="nav__list">
+        <li class="nav__item"><a class="nav__link" href="#home">Home</a></li>
+        <li class="nav__item"><a class="nav__link" href="#services">My Services</a></li>
+        <li class="nav__item"><a class="nav__link" href="#about">About me</a></li>
+        <li class="nav__item"><a class="nav__link" href="#work">My Work</a></li>
+        <li class="nav__item"><a class="nav__link" href="portfolio-item06.html">Linux-Python-Resources</a></li>
+        <li class="nav__item"><a class="nav__link" href="sql.html">data sysadmin</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Introduction -->
+  <section class="intro" id="home">
+    <h1 class="section__title section__title--intro">
+      Hi, I am <strong>Daud Farzand</strong>
+    </h1>
+    <p class="section__subtitle section__subtitle--intro">DEVOPS ENGINEER | SYS-ADMIN</p>
+    <img alt="a picture of Daud Farzand smiling" class="intro__img" src="img/pp.jfif" />
+  </section>
+
+  <!-- My Services -->
+  <section class="my-services" id="services">
+    <h2 class="section__title section__title--services">What I do</h2>
+    <div class="services">
+      <div class="service">
+        <h3>Python Development</h3>
+        <p>
+          <!-- I provide customized development services covering MERN stack, WordPress Theme Customization, and API
+          integration to suit your specific requirements. -->
+          I streamline operations, automate performance monitoring, and configure network services using Python. I also manage user accounts, automate backups, and set up custom configurations tailored to specific administrative needs.
+        </p>
+      </div>
+      <!-- /service -->
+
+      <div class="service">
+        <h3>Linux System Administration</h3>
+<!--        <p>Proficient in debugging, encryption algorithms and techniques, customer service, networking programming and-->
+<!--          protocols and cloud computing.</p>-->
+<!--        <p>Skilled in debugging, encryption algorithms, customer service, networking programming, protocols, and cloud computing.</p>-->
+        <p>I’m passionate about optimizing infrastructure for seamless operations. With expertise in deploying and managing RHEL/CentOS/Ubuntu servers, I configure DHCP, VPN, VoIP, and more. Proficient in Python and Bash scripting, I automate tasks to ensure efficiency and reliability.</p>
+      </div>
+      <!-- /service -->
+
+      <div class="service">
+        <h3>DevOps Consultation</h3>
+<!--        <p>As a technical consultant, I help clients through the complex journey of software project initiation and-->
+<!--          execution.My primary responsibilities entails evaluating the right technical architecture for your needs, and-->
+<!--          handpicking technologies for peak performance and scalability.<br>I play a vital role in DevOps practices and-->
+<!--          deployment strategies, ensuring smooth transitions from development to production environments and fine-tuning-->
+<!--          the deployment pipeline for peak efficiency and unwavering reliability.</p>-->
+          <p>I specialize in automating deployments, managing cloud infrastructure, and optimizing system performance using tools like Docker, Kubernetes, and Ansible. My experience includes full-stack application deployment, system monitoring with Grafana, and implementing robust backup and recovery strategies.</p>
+      </div>
+      <!-- /service -->
+    </div> <!-- /services -->
+
+    <a class="btn" href="#work">My Work</a>
+  </section> <!-- /my-services -->
+
+  <!-- About Me -->
+  <section class="about-me" id="about">
+    <h2 class="section__title section__title--about">Who I am</h2>
+    <p class="section__subtitle section__subtitle--about">Sys-Admin | DevOps professional based in Pakistan</p>
+
+    <div class="about-me__body">
+      <p>I am a DevOps Engineer and Linux System Administrator with a passion for streamlining infrastructure and enabling seamless software delivery. I specialize in deploying and managing cloud-native environments, automating CI/CD pipelines, and optimizing system performance using tools like Docker, Kubernetes, Ansible, and Terraform. My expertise extends to monitoring with Grafana and Prometheus, as well as implementing robust security, backup, and disaster recovery solutions.</p>
+
+      <p>Driven by a commitment to excellence, I continuously refine processes to ensure reliability, scalability, and efficiency across all systems.</p>
+
+
+    </div>
+
+    <img alt="Jane leaning against a bus" class="about-me__img" src="img/developer.jfif">
+  </section> <!-- /about-me -->
+
+  <!-- My Work -->
+  <section class="my-work" id="work">
+    <h2 class="section__title section__title--work">My work</h2>
+    <p class="section__subtitle section__subtitle--work">A selection of my range of work</p>
+
+    <div class="portfolio">
+      <!-- Portfolio item 01 -->
+      <a class="portfolio__item" href="portfolio-item.html">
+        <img alt="" class="portfolio__img" src="img/fightclub-thumb.png" />
+      </a>
+
+      <!-- Portfolio item 02 -->
+      <a class="portfolio__item" href="portfolio-item02.html">
+        <img alt="" class="portfolio__img" src="img/meanbabies-thumb.png" />
+      </a>
+
+      <!-- Portfolio item 03 -->
+      <a class="portfolio__item" href="portfolio-item03.html">
+        <img alt="" class="portfolio__img" src="img/soltars-thumb.png" />
+      </a>
+
+      <!-- Portfolio item 04 -->
+      <a class="portfolio__item" href="portfolio-item04.html">
+        <img alt="" class="portfolio__img" src="img/zealous-benz-thumb.png" />
+      </a>
+
+      <!-- Portfolio item 05 -->
+      <a class="portfolio__item" href="portfolio-item05.html">
+        <img alt="" class="portfolio__img" src="img/portfolio-05.jpg" />
+      </a>
+
+      <!-- Portfolio item 06 -->
+      <a class="portfolio__item" href="portfolio-item06.html">
+        <img alt="" class="portfolio__img" src="img/portfolio-06.jpg" />
+      </a>
+
+      <!-- Portfolio item 07 -->
+      <a class="portfolio__item" href="portfolio-item07.html">
+        <img alt="" class="portfolio__img" src="img/portfolio-07.jpg" />
+      </a>
+
+      <!-- Portfolio item 08 -->
+      <a class="portfolio__item" href="tech-for-2024.html">
+        <img alt="" class="portfolio__img" src="img/portfolio-08.jpg" />
+      </a>
+
+<!--      &lt;!&ndash; Portfolio item 09 &ndash;&gt;-->
+<!--      <a class="portfolio__item" href="portfolio-item.html">-->
+<!--        <img alt="" class="portfolio__img" src="img/portfolio-09.jpg" />-->
+<!--      </a>-->
+
+<!--      &lt;!&ndash; Portfolio item 10 &ndash;&gt;-->
+<!--      <a class="portfolio__item" href="portfolio-item.html">-->
+<!--        <img alt="" class="portfolio__img" src="img/portfolio-10.jpg" />-->
+<!--      </a>-->
+
+
+    </div>
+  </section> <!-- /my-work -->
+
+  <!-- Footer -->
+  <footer class="footer">
+    <!-- replace with your own info -->
+    <a class="footer__link" href="mailto:daudfarzand89@gmail.com">daudfarzand89@gmail.com</a>
+    <ul class="social-list">
+      <li class="social-list__item"><a class="social-list__link"
+          href="https://www.linkedin.com/in/daud-farzand-982743192/"><i class="fab fa-linkedin"></i></a></li>
+      <li class="social-list__item"><a class="social-list__link" href="https://github.com/dfk007"><i
+            class="fab fa-github"></i></a></li>
+      <li class="social-list__item"><a class="social-list__link"
+          href="https://www.instagram.com/twenty_second_savage/"><i class="fab fa-instagram"></i></a></li>
+      <!-- <li class="social-list__item"><a
+          class="social-list__link" href="https://drive.google.com/file/d/19l5vrwHuv5xEijrIfJTuLTbiI7fW-clB/view?usp=sharing"
+          target="_blank">resume</a></li> -->
+          <li class="social-list__item"><a
+            class="social-list__link" href="./files/Final-Draft-2024.pdf"
+            target="_blank">My-Resume</a></li>
+    </ul>
+  </footer>
+
+  <script src="js/index.js"></script>
+
+  <!-- 100% privacy-first analytics -->
+  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+  <noscript><img alt="" referrerpolicy="no-referrer-when-downgrade"
+      src="https://queue.simpleanalyticscdn.com/noscript.gif" /></noscript>
+
+  <script charset="utf-8" src="https://s.pageclip.co/v1/pageclip.js"></script>
+</body>
+
+</html>
