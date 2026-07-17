@@ -1,204 +1,187 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Daud Farzand Portfolio Website</title>
-  <link href="https:/cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet"">
-    <link
-      crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
-    integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" rel=" stylesheet" />
-
-  <!-- Update these with your own fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap"
-    rel="stylesheet">
-
-  <link href="css/style.css" rel="stylesheet">
-  <link href="https://s.pageclip.co/v1/pageclip.css" media="screen" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daud Farzand | AI Platform Engineer</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css" />
+  <link href="https://fonts.googleapis.com/css?family=Lora:400,700|Roboto+Slab:400,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
   <script src="/js/dark.js" type="module"></script>
 </head>
-
 <body>
-<!--    dark-mode-toggle-->
-<dark-mode-toggle></dark-mode-toggle>
-<!--    -->
+  <dark-mode-toggle></dark-mode-toggle>
   <header>
-
-
     <div class="logo">
-      <!--           <img src="img/devdaud.png" alt=""> -->
-
-      <a href="#home"><img alt="" src="img/devdaud.png"></a>
-
+      <a href="#home"><img src="img/devdaud.png" alt="Daud Farzand" /></a>
     </div>
-
     <button aria-label="toggle navigation" class="nav-toggle">
       <span class="hamburger"></span>
     </button>
     <nav class="nav">
       <ul class="nav__list">
         <li class="nav__item"><a class="nav__link" href="#home">Home</a></li>
-        <li class="nav__item"><a class="nav__link" href="#services">My Services</a></li>
-        <li class="nav__item"><a class="nav__link" href="#about">About me</a></li>
-        <li class="nav__item"><a class="nav__link" href="#work">My Work</a></li>
-        <li class="nav__item"><a class="nav__link" href="portfolio-item06.html">Linux-Python-Resources</a></li>
-        <li class="nav__item"><a class="nav__link" href="sql.html">data sysadmin</a></li>
+        <li class="nav__item"><a class="nav__link" href="#competencies">Core Competencies</a></li>
+        <li class="nav__item"><a class="nav__link" href="#experience">Professional Experience</a></li>
+        <li class="nav__item"><a class="nav__link" href="#projects">Projects</a></li>
+        <li class="nav__item"><a class="nav__link" href="#education">Education</a></li>
+        <li class="nav__item"><a class="nav__link" href="#contact">Contact</a></li>
       </ul>
     </nav>
   </header>
 
-  <!-- Introduction -->
+  <!-- Hero Section -->
   <section class="intro" id="home">
-    <h1 class="section__title section__title--intro">
-      Hi, I am <strong>Daud Farzand</strong>
-    </h1>
-    <p class="section__subtitle section__subtitle--intro">DEVOPS ENGINEER | SYS-ADMIN</p>
-    <img alt="a picture of Daud Farzand smiling" class="intro__img" src="img/pp.jfif" />
+    <div class="intro__content">
+      <h1 class="section__title section__title--intro">
+        Hi, I am <strong>Daud Farzand</strong>
+      </h1>
+      <p class="section__subtitle section__subtitle--intro">
+        AI Platform Engineer | RAG & LLM Infrastructure Specialist | MLOps
+      </p>
+      <p class="intro__bio">
+        Expert in vector database management, containerized model serving, token tracking, and multi-tenant SaaS delivery of AI services.
+        Specialized in RAG pipelines, Vertex AI, and AWS-based LLM infrastructure.
+      </p>
+    </div>
+    <div class="intro__img">
+      <img src="img/devdaud.png" alt="Daud Farzand" />
+    </div>
   </section>
 
-  <!-- My Services -->
-  <section class="my-services" id="services">
-    <h2 class="section__title section__title--services">What I do</h2>
-    <div class="services">
-      <div class="service">
-        <h3>Python Development</h3>
-        <p>
-          <!-- I provide customized development services covering MERN stack, WordPress Theme Customization, and API
-          integration to suit your specific requirements. -->
-          I streamline operations, automate performance monitoring, and configure network services using Python. I also manage user accounts, automate backups, and set up custom configurations tailored to specific administrative needs.
-        </p>
+  <!-- Core Competencies Section -->
+  <section class="competencies" id="competencies">
+    <h2 class="section__title">Core Competencies</h2>
+    <div class="competencies__grid">
+      <div class="competency">
+        <i class="fas fa-robot"></i>
+        <h3>RAG Architecture & Pipelines</h3>
       </div>
-      <!-- /service -->
-
-      <div class="service">
-        <h3>Linux System Administration</h3>
-<!--        <p>Proficient in debugging, encryption algorithms and techniques, customer service, networking programming and-->
-<!--          protocols and cloud computing.</p>-->
-<!--        <p>Skilled in debugging, encryption algorithms, customer service, networking programming, protocols, and cloud computing.</p>-->
-        <p>I’m passionate about optimizing infrastructure for seamless operations. With expertise in deploying and managing RHEL/CentOS/Ubuntu servers, I configure DHCP, VPN, VoIP, and more. Proficient in Python and Bash scripting, I automate tasks to ensure efficiency and reliability.</p>
+      <div class="competency">
+        <i class="fas fa-database"></i>
+        <h3>Vector Database Management</h3>
       </div>
-      <!-- /service -->
-
-      <div class="service">
-        <h3>DevOps Consultation</h3>
-<!--        <p>As a technical consultant, I help clients through the complex journey of software project initiation and-->
-<!--          execution.My primary responsibilities entails evaluating the right technical architecture for your needs, and-->
-<!--          handpicking technologies for peak performance and scalability.<br>I play a vital role in DevOps practices and-->
-<!--          deployment strategies, ensuring smooth transitions from development to production environments and fine-tuning-->
-<!--          the deployment pipeline for peak efficiency and unwavering reliability.</p>-->
-          <p>I specialize in automating deployments, managing cloud infrastructure, and optimizing system performance using tools like Docker, Kubernetes, and Ansible. My experience includes full-stack application deployment, system monitoring with Grafana, and implementing robust backup and recovery strategies.</p>
+      <div class="competency">
+        <i class="fas fa-cogs"></i>
+        <h3>Model Context Protocol (MCP)</h3>
       </div>
-      <!-- /service -->
-    </div> <!-- /services -->
-
-    <a class="btn" href="#work">My Work</a>
-  </section> <!-- /my-services -->
-
-  <!-- About Me -->
-  <section class="about-me" id="about">
-    <h2 class="section__title section__title--about">Who I am</h2>
-    <p class="section__subtitle section__subtitle--about">Sys-Admin | DevOps professional based in Pakistan</p>
-
-    <div class="about-me__body">
-      <p>I am a DevOps Engineer and Linux System Administrator with a passion for streamlining infrastructure and enabling seamless software delivery. I specialize in deploying and managing cloud-native environments, automating CI/CD pipelines, and optimizing system performance using tools like Docker, Kubernetes, Ansible, and Terraform. My expertise extends to monitoring with Grafana and Prometheus, as well as implementing robust security, backup, and disaster recovery solutions.</p>
-
-      <p>Driven by a commitment to excellence, I continuously refine processes to ensure reliability, scalability, and efficiency across all systems.</p>
-
-
+      <div class="competency">
+        <i class="fas fa-cloud"></i>
+        <h3>LLM Infrastructure & MLOps</h3>
+      </div>
+      <div class="competency">
+        <i class="fas fa-layer-group"></i>
+        <h3>Multi-tenant Architecture</h3>
+      </div>
+      <div class="competency">
+        <i class="fas fa-server"></i>
+        <h3>Cloud Infrastructure (AWS, GCP)</h3>
+      </div>
     </div>
+  </section>
 
-    <img alt="Jane leaning against a bus" class="about-me__img" src="img/developer.jfif">
-  </section> <!-- /about-me -->
-
-  <!-- My Work -->
-  <section class="my-work" id="work">
-    <h2 class="section__title section__title--work">My work</h2>
-    <p class="section__subtitle section__subtitle--work">A selection of my range of work</p>
-
-    <div class="portfolio">
-      <!-- Portfolio item 01 -->
-      <a class="portfolio__item" href="portfolio-item.html">
-        <img alt="" class="portfolio__img" src="img/fightclub-thumb.png" />
-      </a>
-
-      <!-- Portfolio item 02 -->
-      <a class="portfolio__item" href="portfolio-item02.html">
-        <img alt="" class="portfolio__img" src="img/meanbabies-thumb.png" />
-      </a>
-
-      <!-- Portfolio item 03 -->
-      <a class="portfolio__item" href="portfolio-item03.html">
-        <img alt="" class="portfolio__img" src="img/soltars-thumb.png" />
-      </a>
-
-      <!-- Portfolio item 04 -->
-      <a class="portfolio__item" href="portfolio-item04.html">
-        <img alt="" class="portfolio__img" src="img/zealous-benz-thumb.png" />
-      </a>
-
-      <!-- Portfolio item 05 -->
-      <a class="portfolio__item" href="portfolio-item05.html">
-        <img alt="" class="portfolio__img" src="img/portfolio-05.jpg" />
-      </a>
-
-      <!-- Portfolio item 06 -->
-      <a class="portfolio__item" href="portfolio-item06.html">
-        <img alt="" class="portfolio__img" src="img/portfolio-06.jpg" />
-      </a>
-
-      <!-- Portfolio item 07 -->
-      <a class="portfolio__item" href="portfolio-item07.html">
-        <img alt="" class="portfolio__img" src="img/portfolio-07.jpg" />
-      </a>
-
-      <!-- Portfolio item 08 -->
-      <a class="portfolio__item" href="tech-for-2024.html">
-        <img alt="" class="portfolio__img" src="img/portfolio-08.jpg" />
-      </a>
-
-<!--      &lt;!&ndash; Portfolio item 09 &ndash;&gt;-->
-<!--      <a class="portfolio__item" href="portfolio-item.html">-->
-<!--        <img alt="" class="portfolio__img" src="img/portfolio-09.jpg" />-->
-<!--      </a>-->
-
-<!--      &lt;!&ndash; Portfolio item 10 &ndash;&gt;-->
-<!--      <a class="portfolio__item" href="portfolio-item.html">-->
-<!--        <img alt="" class="portfolio__img" src="img/portfolio-10.jpg" />-->
-<!--      </a>-->
-
-
+  <!-- Professional Experience Section -->
+  <section class="experience" id="experience">
+    <h2 class="section__title">Professional Experience</h2>
+    <div class="experience__timeline">
+      <div class="experience__item">
+        <h3>AI Platform Infrastructure Engineer @ Tech Prysm</h3>
+        <p class="experience__period">Oct 2025 – Present</p>
+        <ul>
+          <li>Architected and deployed production RAG (Retrieval-Augmented Generation) pipelines integrating vector databases (Pinecone, pgvector) with LLM inference endpoints, enabling context-aware AI responses with 40% improvement in response accuracy and relevance for enterprise knowledge bases.</li>
+          <li>Implemented Model Context Protocol (MCP) infrastructure for standardized AI model serving, enabling seamless integration between multiple LLM providers (OpenAI, Anthropic, Google) and client applications with unified API interfaces, reducing integration time by 70%.</li>
+          <li>Deployed and managed Vertex AI workloads on Google Cloud Platform, including model training pipelines, prediction endpoints, and automated model versioning with blue-green deployment strategies, achieving 99.9% uptime for AI inference services.</li>
+        </ul>
+      </div>
+      <div class="experience__item">
+        <h3>AI Platform Engineer @ Techanzy Limited</h3>
+        <p class="experience__period">May 2024 – Sept 2025</p>
+        <ul>
+          <li>Architected and deployed ServeLLM, a production-grade, privacy-first LLM platform with complete OpenAI API compatibility, enabling drop-in replacement for /v1/chat/completions endpoint with zero vendor lock-in.</li>
+          <li>Designed and implemented OpenAI-compatible LLM API infrastructure with real-time streaming response capabilities using Server-Sent Events (SSE), supporting 500+ concurrent streaming sessions with <50ms time-to-first-token latency.</li>
+          <li>Built comprehensive token tracking and billing system with accurate token counting using tiktoken library, database-persisted usage records per API key, and real-time analytics dashboard displaying token consumption by model, organization, and time period.</li>
+        </ul>
+      </div>
+      <div class="experience__item">
+        <h3>DevOps Engineer @ Programmer's Force Pvt Ltd</h3>
+        <p class="experience__period">Jan 2023 – Mar 2024</p>
+        <ul>
+          <li>Orchestrated and containerized applications using Docker, achieving high scalability and consistent deployment reliability across staging and production environments.</li>
+          <li>Designed and optimized CI/CD pipelines using GitLab, fully automating deployment processes.</li>
+          <li>Automated server configuration and deployment using Ansible, enhancing system consistency and eliminating manual errors.</li>
+        </ul>
+      </div>
+      <div class="experience__item">
+        <h3>Technology Director @ Unmatched Resumes LLC</h3>
+        <p class="experience__period">Mar 2022 – Dec 2022</p>
+        <ul>
+          <li>Spearheaded a robust, user-friendly WordPress web platform, defining technical architecture and coordinating development workflows; boosted user engagement by 30% and improved customer retention through iterative feature releases.</li>
+          <li>Managed product backlog and release pipeline in collaboration with Product Owners; led defect identification and resolution cycles, ensuring on-time delivery across sprint cadences.</li>
+        </ul>
+      </div>
     </div>
-  </section> <!-- /my-work -->
+  </section>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <!-- replace with your own info -->
-    <a class="footer__link" href="mailto:daudfarzand89@gmail.com">daudfarzand89@gmail.com</a>
-    <ul class="social-list">
-      <li class="social-list__item"><a class="social-list__link"
-          href="https://www.linkedin.com/in/daud-farzand-982743192/"><i class="fab fa-linkedin"></i></a></li>
-      <li class="social-list__item"><a class="social-list__link" href="https://github.com/dfk007"><i
-            class="fab fa-github"></i></a></li>
-      <li class="social-list__item"><a class="social-list__link"
-          href="https://www.instagram.com/twenty_second_savage/"><i class="fab fa-instagram"></i></a></li>
-      <!-- <li class="social-list__item"><a
-          class="social-list__link" href="https://drive.google.com/file/d/19l5vrwHuv5xEijrIfJTuLTbiI7fW-clB/view?usp=sharing"
-          target="_blank">resume</a></li> -->
-          <li class="social-list__item"><a
-            class="social-list__link" href="./files/Daud_Farzand_Resume_2026_v2.pdf"
-            target="_blank">My-Resume</a></li>
-    </ul>
+  <!-- Projects Section -->
+  <section class="projects" id="projects">
+    <h2 class="section__title">Featured Projects</h2>
+    <div class="projects__grid">
+      <div class="project__card">
+        <img src="img/servelm-mockup.png" alt="ServeLLM" />
+        <h3>ServeLLM</h3>
+        <p>Privacy-first LLM platform with OpenAI API compatibility.</p>
+        <p><strong>Tech Stack:</strong> FastAPI, Next.js, PostgreSQL, Ollama</p>
+      </div>
+      <div class="project__card">
+        <img src="img/rag-pipeline-mockup.png" alt="RAG Pipeline" />
+        <h3>RAG Pipeline for Enterprise Knowledge Base</h3>
+        <p>Context-aware AI responses with 40% accuracy improvement.</p>
+        <p><strong>Tech Stack:</strong> Pinecone, Vertex AI, FastAPI</p>
+      </div>
+      <div class="project__card">
+        <img src="img/observability-stack-mockup.png" alt="Observability Stack" />
+        <h3>Observability Stack for AI/ML</h3>
+        <p>Real-time monitoring of model inference and token usage.</p>
+        <p><strong>Tech Stack:</strong> Prometheus, Grafana, OpenTelemetry</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Education Section -->
+  <section class="education" id="education">
+    <h2 class="section__title">Education & Certifications</h2>
+    <div class="education__item">
+      <h3>Bachelor's in Machine Learning & AI</h3>
+      <p>Goldsmiths, University of London | 2023</p>
+    </div>
+    <div class="education__item">
+      <h3>Certifications</h3>
+      <ul>
+        <li>Google IT Support Specialization</li>
+        <li>Google Data Analytics Specialization</li>
+        <li>Google Digital Product Management</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact" id="contact">
+    <h2 class="section__title">Let’s Collaborate</h2>
+    <div class="contact__info">
+      <p><i class="fas fa-envelope"></i> daudfarzand89@gmail.com</p>
+      <p><i class="fas fa-phone"></i> (92) 345-5137420</p>
+      <p><i class="fas fa-map-marker-alt"></i> House 579, A-1, Gulberg 3, Lahore</p>
+    </div>
+    <div class="social-links">
+      <a href="https://linkedin.com/in/daudfarzand" target="_blank"><i class="fab fa-linkedin"></i></a>
+      <a href="https://github.com/dfk007" target="_blank"><i class="fab fa-github"></i></a>
+    </div>
+    <a href="path/to/your/resume.pdf" class="btn" download>Download Resume</a>
+  </section>
+
+  <footer>
+    <p>© 2026 Daud Farzand. All rights reserved.</p>
   </footer>
-
-  <script src="js/index.js"></script>
-
-  <!-- 100% privacy-first analytics -->
-  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-  <noscript><img alt="" referrerpolicy="no-referrer-when-downgrade"
-      src="https://queue.simpleanalyticscdn.com/noscript.gif" /></noscript>
-
-  <script charset="utf-8" src="https://s.pageclip.co/v1/pageclip.js"></script>
 </body>
-
 </html>

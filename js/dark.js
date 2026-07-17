@@ -1,13 +1,45 @@
-import 'https://googlechromelabs.github.io/dark-mode-toggle/src/dark-mode-toggle.mjs';
+// dark.js
+class DarkModeToggle extends HTMLElement {
+  constructor() {
+    super();
+    this.attachShadow({ mode: 'open' });
+    this.shadowRoot.innerHTML = `
+      <style>
+        :host {
+          display: block;
+          cursor: pointer;
+          position: fixed;
+          top: 0.5rem;
+          right: 0.5rem;
+          z-index: 1000;
+        }
+        button {
+          background: transparent;
+          border: none;
+          color: #f8333c;
+          font-size: 1.5rem;
+          cursor: pointer;
+        }
+      </style>
+      <button aria-label="Toggle dark mode">🌓</button>
+    `;
+    this.button = this.shadowRoot.querySelector('button');
+    this.button.addEventListener('click', () => this.toggleDarkMode());
+    this.checkInitialMode();
+  }
 
-const toggle = document.querySelector('dark-mode-toggle');
-const body = document.body;
+  toggleDarkMode() {
+    document.body.classList.toggle('dark');
+    const isDark = document.body.classList.contains('dark');
+    localStorage.setItem('darkMode', isDark);
+  }
 
-// Set or remove the `dark` class the first time.
-toggle.mode === 'dark' ? body.classList.add('dark') : body.classList.remove('dark');
+  checkInitialMode() {
+    const savedMode = localStorage.getItem('darkMode');
+    if (savedMode === 'true') {
+      document.body.classList.add('dark');
+    }
+  }
+}
 
-// Listen for toggle changes (which includes `prefers-color-scheme` changes)
-// and toggle the `dark` class accordingly.
-toggle.addEventListener('colorschemechange', () => {
-    body.classList.toggle('dark', toggle.mode === 'dark');
-});
+customElements.define('dark-mode-toggle', DarkModeToggle);
