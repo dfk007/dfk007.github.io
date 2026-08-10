@@ -146,5 +146,133 @@ hr.rule {
 }
 
 /* =============================================================
-   Component blocks are appended below by Tasks 3-8
+   Header + Nav
+   ============================================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    background: rgba(10, 10, 11, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid transparent;
+    transition: border-color var(--dur-mid) var(--ease-out);
+}
+.header.is-scrolled {
+    border-bottom-color: var(--border);
+}
+.header__inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+.logo {
+    font-family: var(--ff-mono);
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.02em;
+}
+.logo:hover { color: var(--accent); }
+
+.nav__list {
+    display: none;
+    gap: 1.75rem;
+    align-items: center;
+}
+.nav__link {
+    position: relative;
+    font-size: 0.9375rem;
+    color: var(--muted);
+    padding: 0.5rem 0;
+    transition: color var(--dur-fast) var(--ease-out);
+}
+.nav__link::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    background: var(--accent);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 250ms var(--ease-out);
+}
+.nav__link:hover,
+.nav__link:focus-visible,
+.nav__link[aria-current="true"] {
+    color: var(--text);
+}
+.nav__link:hover::after,
+.nav__link:focus-visible::after,
+.nav__link[aria-current="true"]::after {
+    transform: scaleX(1);
+}
+
+.nav-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--r-sm);
+}
+.nav-toggle:hover { background: var(--bg-2); }
+.hamburger,
+.hamburger::before,
+.hamburger::after {
+    content: '';
+    display: block;
+    background: var(--text);
+    width: 20px;
+    height: 2px;
+    border-radius: 2px;
+    position: relative;
+    transition: transform var(--dur-mid) var(--ease-out);
+}
+.hamburger::before { position: absolute; top: -6px; left: 0; }
+.hamburger::after  { position: absolute; top: 6px;  left: 0; }
+body.nav-open .hamburger { background: transparent; }
+body.nav-open .hamburger::before { transform: translateY(6px) rotate(45deg); }
+body.nav-open .hamburger::after  { transform: translateY(-6px) rotate(-45deg); }
+
+/* mobile drawer */
+@media (max-width: 767px) {
+    .nav {
+        position: fixed;
+        inset: 64px 0 auto 0;
+        background: var(--bg-0);
+        border-top: 1px solid var(--border);
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--dur-mid) var(--ease-out);
+    }
+    body.nav-open .nav { max-height: calc(100vh - 64px); }
+    .nav__list {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 1rem;
+    }
+    .nav__link {
+        display: block;
+        font-family: var(--ff-mono);
+        font-size: 1rem;
+        padding: 0.875rem 0.5rem;
+        border-bottom: 1px solid var(--border);
+    }
+    .nav__link::after { display: none; }
+}
+
+@media (min-width: 768px) {
+    .nav__list { display: flex; }
+    .nav-toggle { display: none; }
+}
+
+/* =============================================================
+   Component blocks are appended below by Tasks 4-8
    ============================================================= */
