@@ -1,0 +1,597 @@
+╭─── Claude Code v2.1.226 ─────────────────────────────────────────────────────╮
+│                                              │ Tips for getting started      │
+│                 Welcome back!                │ Run /init to create a CLAUDE… │
+│                                              │ ───────────────────────────── │
+│                    ▐▛███▜▌                   │ What's new                    │
+│                   ▝▜█████▛▘                  │ Bug fixes and reliability im… │
+│                     ▘▘ ▝▝                    │ Added gateway spend-limit su… │
+│                                              │ Added a workspace trust prom… │
+│        minimax-m3 · API Usage Billing        │ /release-notes for more       │
+│   ~/Desktop/DFK-Portfolio/dfk007.github.io   │                               │
+╰──────────────────────────────────────────────────────────────────────────────╯
+
+
+❯ update my portfolio in this dir with my resume                                
+  @Daud_Farzand_Resume_2026_v2.pdf                                              
+  ⎿  Read Daud_Farzand_Resume_2026_v2.pdf (107.4KB)
+
+  Thought for 8s, read 1 file, listed 2 directories (ctrl+o to expand)
+
+● Good — files/Daud_Farzand_Resume_2026_v2.pdf already exists and the footer
+  link at index.html:189 already points to it. Comparing PDF sizes: root copy is
+  109,989 bytes (matches files/). The PDFs are identical (same byte count).
+
+  Let me verify there's no stale resume reference left elsewhere:
+
+  Searched for 1 pattern (ctrl+o to expand)
+
+● The user wants the portfolio updated to reflect the resume. Looking at the
+  comparison checklist, the resume is a major pivot — from "DevOps Engineer |
+  Sys-Admin" to AI Platform Engineer | RAG & LLM Infrastructure Specialist | 
+  MLOps. This isn't a small update; it's a content rewrite.
+
+  Before I plunge in, I need to scope this properly:
+
+  Read 1 file (ctrl+o to expand)
+
+● I have a clear picture now. The resume PDF is already in place at
+  files/Daud_Farzand_Resume_2026_v2.pdf, but the rest of the site still says
+  "DEVOPS ENGINEER | SYS-ADMIN" — which is now outdated. The user said "update
+  my portfolio with my resume", and there's already a 309-line revamp checklist
+  in the repo that spells out exactly what that means.
+
+  This is a substantial content rewrite (hero, services, about, work, footer
+  across index.html + the other portfolio-item pages). Before I start swinging a
+  sledgehammer across all of it, let me confirm the scope with the user — three
+  things matter:
+
+● User answered Claude's questions:
+  ⎿  · How much of the portfolio should I update to match the resume? → Full 
+     index.html revamp (Recommended)
+     · Should I update the older portfolio project pages (portfolio-item02.html 
+     etc.) too? → Leave them, just update index.html (Recommended)
+
+● Got it — full index.html revamp, leaving the older project pages alone. Let me
+  plan and execute.
+
+● Entered plan mode
+  Claude is now exploring and designing an implementation approach.
+
+● Let me explore the styles and other pages to make sure my plan fits the
+  existing patterns.
+
+  Searched for 1 pattern, read 1 file, listed 1 directory (ctrl+o to expand)
+
+● Good — I have all I need. The existing CSS already supports .section__title,
+  .section__subtitle--*, .service, .about-me__body, .portfolio,
+  .portfolio__item. No CSS changes needed; I'll just add new sections using
+  existing classes. The pattern is clear: each section is a <section> with a
+  title, subtitle, and content area.
+
+  Now let me write the plan.
+
+● Updated plan
+  ⎿  /plan to preview
+  ⎿  Error: You are not in plan mode. To enter plan mode, call the EnterPlanMode
+     tool first. If your plan was already approved, continue with 
+     implementation.
+
+● Plan file is written. Since the user already gave me the green light ("update
+  my portfolio with my resume") and answered both clarifying questions, I'll
+  proceed with implementation.
+
+  Now executing the revamp. The diff will be confined to index.html. I'll do
+  this in surgical edits rather than rewriting the whole file.
+
+  1. Nav — add three new in-page links (Experience, Skills, Education):
+
+● Update(index.html)
+  ⎿  Added 4 lines, removed 2 lines
+      39      <nav class="nav">
+      40        <ul class="nav__list">
+      41          <li class="nav__item"><a class="nav__link" href="#home"
+          >Home</a></li>
+      42 -        <li class="nav__item"><a class="nav__link" href="#servi
+         -ces">My Services</a></li>                                      
+      43 -        <li class="nav__item"><a class="nav__link" href="#about
+         -">About me</a></li>                                            
+      42 +        <li class="nav__item"><a class="nav__link" href="#servi
+         +ces">Services</a></li>                                         
+      43 +        <li class="nav__item"><a class="nav__link" href="#about
+         +">Experience</a></li>                                          
+      44 +        <li class="nav__item"><a class="nav__link" href="#skill
+         +s">Skills</a></li>                                             
+      45          <li class="nav__item"><a class="nav__link" href="#work"
+          >My Work</a></li>
+      46 +        <li class="nav__item"><a class="nav__link" href="#educa
+         +tion">Education</a></li>                                       
+      47          <li class="nav__item"><a class="nav__link" href="portfo
+          lio-item06.html">Linux-Python-Resources</a></li>
+      48          <li class="nav__item"><a class="nav__link" href="sql.ht
+          ml">data sysadmin</a></li>
+      49        </ul>
+
+● 2. Hero — update tagline:
+
+● Update(index.html)
+  ⎿  Added 1 line, removed 1 line
+      55      <h1 class="section__title section__title--intro">
+      56        Hi, I am <strong>Daud Farzand</strong>
+      57      </h1>
+      58 -    <p class="section__subtitle section__subtitle--intro">DEVOP
+         -S ENGINEER | SYS-ADMIN</p>                                     
+      58 +    <p class="section__subtitle section__subtitle--intro">AI PL
+         +ATFORM ENGINEER | RAG & LLM INFRASTRUCTURE SPECIALIST | MLOPS</
+         +p>                                                             
+      59      <img alt="a picture of Daud Farzand smiling" class="intro__
+          img" src="img/pp.jfif" />
+      60    </section>
+      61  
+
+● 3. Services section — three new AI/ML competency cards:
+
+● Update(index.html)
+  ⎿  Added 6 lines, removed 18 lines
+      64      <h2 class="section__title section__title--services">What I 
+          do</h2>
+      65      <div class="services">
+      66        <div class="service">
+      67 -        <h3>Python Development</h3>                            
+      68 -        <p>                                                    
+      69 -          <!-- I provide customized development services coveri
+         -ng MERN stack, WordPress Theme Customization, and API          
+      70 -          integration to suit your specific requirements. -->  
+      71 -          I streamline operations, automate performance monitor
+         -ing, and configure network services using Python. I also manage
+         - user accounts, automate backups, and set up custom configurati
+         -ons tailored to specific administrative needs.                 
+      72 -        </p>                                                   
+      67 +        <h3>RAG &amp; LLM Infrastructure</h3>                  
+      68 +        <p>I build production RAG pipelines with the Model Cont
+         +ext Protocol (MCP), manage vector databases (pgvector, Pinecone
+         +, Weaviate, Chroma), and serve LLMs through OpenAI-compatible A
+         +PIs with token tracking and per-tenant analytics.</p>          
+      69        </div>
+      70        <!-- /service -->
+      71  
+      72        <div class="service">
+      77 -        <h3>Linux System Administration</h3>                   
+      78 -<!--        <p>Proficient in debugging, encryption algorithms a
+         -nd techniques, customer service, networking programming and--> 
+      79 -<!--          protocols and cloud computing.</p>-->            
+      80 -<!--        <p>Skilled in debugging, encryption algorithms, cus
+         -tomer service, networking programming, protocols, and cloud com
+         -puting.</p>-->                                                 
+      81 -        <p>I’m passionate about optimizing infrastructure for s
+         -eamless operations. With expertise in deploying and managing RH
+         -EL/CentOS/Ubuntu servers, I configure DHCP, VPN, VoIP, and more
+         -. Proficient in Python and Bash scripting, I automate tasks to 
+         -ensure efficiency and reliability.</p>                         
+      73 +        <h3>AI Platform &amp; MLOps</h3>                       
+      74 +        <p>I architect multi-tenant SaaS for AI workloads on Fa
+         +stAPI and Next.js 15, deploy inference on Vertex AI and AWS Bed
+         +rock, and ship ML models through GitHub Actions, GitLab CI/CD, 
+         +Terraform, and ArgoCD.</p>                                     
+      75        </div>
+      76        <!-- /service -->
+      77  
+      78        <div class="service">
+      86 -        <h3>DevOps Consultation</h3>                           
+      87 -<!--        <p>As a technical consultant, I help clients throug
+         -h the complex journey of software project initiation and-->    
+      88 -<!--          execution.My primary responsibilities entails eva
+         -luating the right technical architecture for your needs, and-->
+      89 -<!--          handpicking technologies for peak performance and
+         - scalability.<br>I play a vital role in DevOps practices and-->
+      90 -<!--          deployment strategies, ensuring smooth transition
+         -s from development to production environments and fine-tuning--
+         ->                                                              
+      91 -<!--          the deployment pipeline for peak efficiency and u
+         -nwavering reliability.</p>-->                                  
+      92 -          <p>I specialize in automating deployments, managing c
+         -loud infrastructure, and optimizing system performance using to
+         -ols like Docker, Kubernetes, and Ansible. My experience include
+         -s full-stack application deployment, system monitoring with Gra
+         -fana, and implementing robust backup and recovery strategies.</
+         -p>                                                             
+      79 +        <h3>Observability &amp; Cloud Infra</h3>               
+      80 +        <p>I run Docker, Kubernetes, and Helm on hybrid cloud (
+         +AWS, GCP, on-prem GPU), instrument AI/ML workloads with Prometh
+         +eus, Grafana, and OpenTelemetry, and tune inference cost, laten
+         +cy, and uptime.</p>                                            
+      81        </div>
+      82        <!-- /service -->
+      83      </div> <!-- /services -->
+
+● 4. About-Me → Professional Experience (replace the prose with the four roles):
+
+● Update(index.html)
+  ⎿  Added 12 lines, removed 4 lines
+       88    <!-- About Me -->
+       89    <section class="about-me" id="about">
+       90      <h2 class="section__title section__title--about">Who I am<
+           /h2>
+       91 -    <p class="section__subtitle section__subtitle--about">Sys-
+          -Admin | DevOps professional based in Pakistan</p>             
+       91 +    <p class="section__subtitle section__subtitle--about">AI P
+          +latform Engineer based in Lahore, Pakistan</p>                
+       92  
+       93      <div class="about-me__body">
+       94 -      <p>I am a DevOps Engineer and Linux System Administrator
+          - with a passion for streamlining infrastructure and enabling s
+          -eamless software delivery. I specialize in deploying and manag
+          -ing cloud-native environments, automating CI/CD pipelines, and
+          - optimizing system performance using tools like Docker, Kubern
+          -etes, Ansible, and Terraform. My expertise extends to monitori
+          -ng with Grafana and Prometheus, as well as implementing robust
+          - security, backup, and disaster recovery solutions.</p>       
+       94 +      <p>AI Platform Infrastructure Engineer specializing in R
+          +AG pipelines, Model Context Protocol (MCP), and LLM serving on
+          + Google Cloud (Vertex AI) and AWS. Expert in vector database m
+          +anagement, containerized model serving, token tracking, and mu
+          +lti-tenant SaaS delivery of AI services — built for enterprise
+          +-grade observability and cost optimization.</p>               
+       95  
+       96 -      <p>Driven by a commitment to excellence, I continuously 
+          -refine processes to ensure reliability, scalability, and effic
+          -iency across all systems.</p>                                 
+       96 +      <p><strong>Tech Prysm</strong> — AI Platform Infrastruct
+          +ure Engineer <em>(Oct 2025 – Present)</em><br>                
+       97 +        Production RAG pipelines with 40% accuracy lift, MCP i
+          +nfrastructure, Vertex AI workloads at 99.9% uptime, CI/CD for 
+          +ML models, observability stack, vector DB infra for 10M+ chunk
+          +s, 35% LLM cost reduction.</p>                                
+       98  
+       99 +      <p><strong>Techanzy Limited</strong> — AI Platform Engin
+          +eer | RAG &amp; LLM Infrastructure | MLOps <em>(May 2024 – Sep
+          +t 2025)</em><br>                                              
+      100 +        Architected <em>ServeLLM</em>, a privacy-first OpenAI-
+          +compatible LLM platform with SSE streaming (&lt;50ms TTFT), to
+          +ken tracking &amp; billing, hybrid-cloud inference (AWS + GCP 
+          ++ on-prem GPU), 5-tier RBAC, and &lt;1.5GB memory footprint pe
+          +r service.</p>                                                
+      101  
+      102 +      <p><strong>Programmer's Force Pvt Ltd</strong> — DevOps 
+          +Engineer <em>(Jan 2023 – Mar 2024)</em><br>                   
+      103 +        Containerized apps with Docker, built GitLab CI/CD, au
+          +tomated config with Ansible, deployed Grafana/Prometheus monit
+          +oring, wrote backup/recovery playbooks, and hardened Kubernete
+          +s with RBAC and security policies.</p>                        
+      104 +                                                              
+      105 +      <p><strong>Unmatched Resumes LLC</strong> — Technology D
+          +irector (Lead Engineer – Program Management) <em>(Mar 2022 – D
+          +ec 2022)</em><br>                                             
+      106 +        Led a WordPress web platform (30% engagement lift), ma
+          +naged release pipeline and product backlog, drove engineering 
+          +capacity planning.</p>                                        
+      107      </div>
+      108  
+      101 -    <img alt="Jane leaning against a bus" class="about-me__img
+          -" src="img/developer.jfif">                                   
+      109 +    <img alt="Daud Farzand" class="about-me__img" src="img/dev
+          +eloper.jfif">                                                 
+      110    </section> <!-- /about-me -->
+      111  
+      112    <!-- My Work -->
+
+● 5. New Technical Skills section — insert after </section> that closes 
+  about-me, before the My Work section:
+
+● Update(index.html)
+  ⎿  Added 36 lines
+      109      <img alt="Daud Farzand" class="about-me__img" src="img/dev
+           eloper.jfif">
+      110    </section> <!-- /about-me -->
+      111  
+      112 +  <!-- Technical Skills -->                                   
+      113 +  <section class="my-services" id="skills" style="background-i
+          +mage:none;">                                                  
+      114 +    <h2 class="section__title section__title--services">Techni
+          +cal Skills</h2>                                               
+      115 +    <div class="services">                                    
+      116 +      <div class="service">                                   
+      117 +        <h3>AI / ML</h3>                                      
+      118 +        <p>RAG pipelines · Model Context Protocol (MCP) · Vert
+          +ex AI · Ollama · OpenAI API · LangChain · tiktoken · Embedding
+          + models</p>                                                   
+      119 +        <p>Vector DBs: pgvector · Pinecone · Weaviate · Chroma
+          +</p>                                                          
+      120 +      </div>                                                  
+      121 +      <div class="service">                                   
+      122 +        <h3>Backend &amp; Frontend</h3>                       
+      123 +        <p>FastAPI · Python 3.11+ · REST · SSE streaming · gRP
+          +C · microservices</p>                                         
+      124 +        <p>Next.js 15 · React 19 · TypeScript · Tailwind CSS ·
+          + SSR</p>                                                      
+      125 +      </div>                                                  
+      126 +      <div class="service">                                   
+      127 +        <h3>Cloud &amp; DevOps</h3>                           
+      128 +        <p>GCP: Vertex AI · Cloud Run · GKE · BigQuery</p>    
+      129 +        <p>AWS: EC2 · EKS · S3 · Lambda · Bedrock</p>         
+      130 +        <p>Docker · Kubernetes · Helm · ArgoCD · Terraform · A
+          +nsible · WireGuard</p>                                        
+      131 +      </div>                                                  
+      132 +      <div class="service">                                   
+      133 +        <h3>Data</h3>                                         
+      134 +        <p>PostgreSQL · pgvector · PgBouncer · Redis · SQLAlch
+          +emy · Alembic</p>                                             
+      135 +        <p>MinIO (S3-compatible) · Google Cloud Storage</p>   
+      136 +      </div>                                                  
+      137 +      <div class="service">                                   
+      138 +        <h3>Observability</h3>                                
+      139 +        <p>Prometheus · Grafana · OpenTelemetry · real-time da
+          +shboards · model-drift detection</p>                          
+      140 +      </div>                                                  
+      141 +      <div class="service">                                   
+      142 +        <h3>Security &amp; Auth</h3>                          
+      143 +        <p>JWT · API-key management · 5-tier RBAC · middleware
+          + auth · OAuth2 · secrets management</p>                       
+      144 +      </div>                                                  
+      145 +    </div>                                                    
+      146 +  </section> <!-- /skills -->                                 
+      147 +                                                              
+      148    <!-- My Work -->
+      149    <section class="my-work" id="work">
+      150      <h2 class="section__title section__title--work">My work</h
+           2>
+
+● 6. My Work — replace 8 generic cards with 5 AI/ML project cards (reusing 
+  existing thumbnails, updating alt text):
+
+● Update(index.html)
+  ⎿  Added 32 lines, removed 40 lines
+      148    <!-- My Work -->
+      149    <section class="my-work" id="work">
+      150      <h2 class="section__title section__title--work">My work</h
+           2>
+      151 -    <p class="section__subtitle section__subtitle--work">A sel
+          -ection of my range of work</p>                                
+      151 +    <p class="section__subtitle section__subtitle--work">Selec
+          +ted AI / ML infrastructure projects</p>                       
+      152  
+      153      <div class="portfolio">
+      154 -      <!-- Portfolio item 01 -->                              
+      155 -      <a class="portfolio__item" href="portfolio-item.html">  
+      156 -        <img alt="" class="portfolio__img" src="img/fightclub-
+          -thumb.png" />                                                 
+      154 +      <!-- Portfolio item: ServeLLM -->                       
+      155 +      <a class="portfolio__item" href="portfolio-item.html" ti
+          +tle="ServeLLM — privacy-first OpenAI-compatible LLM platform">
+      156 +        <img alt="ServeLLM — privacy-first OpenAI-compatible L
+          +LM platform" class="portfolio__img" src="img/fightclub-thumb.p
+          +ng" />                                                        
+      157        </a>
+      158  
+      159 -      <!-- Portfolio item 02 -->                              
+      160 -      <a class="portfolio__item" href="portfolio-item02.html">
+      161 -        <img alt="" class="portfolio__img" src="img/meanbabies
+          --thumb.png" />                                                
+      159 +      <!-- Portfolio item: Enterprise RAG Pipeline -->        
+      160 +      <a class="portfolio__item" href="portfolio-item02.html" 
+          +title="Enterprise RAG Pipeline — pgvector + Vertex AI, 40% acc
+          +uracy lift">                                                  
+      161 +        <img alt="Enterprise RAG Pipeline — pgvector + Vertex 
+          +AI, 40% accuracy lift" class="portfolio__img" src="img/meanbab
+          +ies-thumb.png" />                                             
+      162        </a>
+      163  
+      164 -      <!-- Portfolio item 03 -->                              
+      165 -      <a class="portfolio__item" href="portfolio-item03.html">
+      166 -        <img alt="" class="portfolio__img" src="img/soltars-th
+          -umb.png" />                                                   
+      164 +      <!-- Portfolio item: AI/ML Observability Stack -->      
+      165 +      <a class="portfolio__item" href="portfolio-item03.html" 
+          +title="AI/ML Observability Stack — Prometheus, Grafana, OpenTe
+          +lemetry">                                                     
+      166 +        <img alt="AI/ML Observability Stack — Prometheus, Graf
+          +ana, OpenTelemetry" class="portfolio__img" src="img/soltars-th
+          +umb.png" />                                                   
+      167        </a>
+      168  
+      169 -      <!-- Portfolio item 04 -->                              
+      170 -      <a class="portfolio__item" href="portfolio-item04.html">
+      171 -        <img alt="" class="portfolio__img" src="img/zealous-be
+          -nz-thumb.png" />                                              
+      169 +      <!-- Portfolio item: Vector Database Infrastructure --> 
+      170 +      <a class="portfolio__item" href="portfolio-item04.html" 
+          +title="Vector Database Infrastructure — 10M+ chunks, sub-secon
+          +d queries">                                                   
+      171 +        <img alt="Vector Database Infrastructure — 10M+ chunks
+          +, sub-second queries" class="portfolio__img" src="img/zealous-
+          +benz-thumb.png" />                                            
+      172        </a>
+      173  
+      174 -      <!-- Portfolio item 05 -->                              
+      175 -      <a class="portfolio__item" href="portfolio-item05.html">
+      176 -        <img alt="" class="portfolio__img" src="img/portfolio-
+          -05.jpg" />                                                    
+      174 +      <!-- Portfolio item: Hybrid-Cloud LLM Deployment -->    
+      175 +      <a class="portfolio__item" href="portfolio-item05.html" 
+          +title="Hybrid-Cloud LLM Deployment — AWS, GCP, on-prem GPU">  
+      176 +        <img alt="Hybrid-Cloud LLM Deployment — AWS, GCP, on-p
+          +rem GPU" class="portfolio__img" src="img/portfolio-05.jpg" /> 
+      177        </a>
+      178  
+      179 -      <!-- Portfolio item 06 -->                              
+      180 -      <a class="portfolio__item" href="portfolio-item06.html">
+      181 -        <img alt="" class="portfolio__img" src="img/portfolio-
+          -06.jpg" />                                                    
+      182 -      </a>                                                    
+      179 +    </div>                                                    
+      180 +  </section> <!-- /my-work -->                                
+      181  
+      184 -      <!-- Portfolio item 07 -->                              
+      185 -      <a class="portfolio__item" href="portfolio-item07.html">
+      186 -        <img alt="" class="portfolio__img" src="img/portfolio-
+          -07.jpg" />                                                    
+      187 -      </a>                                                    
+      182 +  <!-- Education & Certifications -->                         
+      183 +  <section class="about-me" id="education">                   
+      184 +    <h2 class="section__title section__title--about">Education
+          + &amp; Certifications</h2>                                    
+      185 +    <p class="section__subtitle section__subtitle--about">Acad
+          +emic background &amp; professional credentials</p>            
+      186  
+      189 -      <!-- Portfolio item 08 -->                              
+      190 -      <a class="portfolio__item" href="tech-for-2024.html">   
+      191 -        <img alt="" class="portfolio__img" src="img/portfolio-
+          -08.jpg" />                                                    
+      192 -      </a>                                                    
+      187 +    <div class="about-me__body">                              
+      188 +      <p><strong>Education</strong><br>                       
+      189 +        Bachelor's in Machine Learning &amp; Artificial Intell
+          +igence — Goldsmiths, University of London (2023)</p>          
+      190  
+      194 -<!--      &lt;!&ndash; Portfolio item 09 &ndash;&gt;-->       
+      195 -<!--      <a class="portfolio__item" href="portfolio-item.html
+          -">-->                                                         
+      196 -<!--        <img alt="" class="portfolio__img" src="img/portfo
+          -lio-09.jpg" />-->                                             
+      197 -<!--      </a>-->                                             
+      198 -                                                              
+      199 -<!--      &lt;!&ndash; Portfolio item 10 &ndash;&gt;-->       
+      200 -<!--      <a class="portfolio__item" href="portfolio-item.html
+          -">-->                                                         
+      201 -<!--        <img alt="" class="portfolio__img" src="img/portfo
+          -lio-10.jpg" />-->                                             
+      202 -<!--      </a>-->                                             
+      203 -                                                              
+      204 -                                                              
+      191 +      <p><strong>Certifications</strong></p>                  
+      192 +      <ul>                                                    
+      193 +        <li>Google IT Support Specialization</li>             
+      194 +        <li>Google Data Analytics Specialization</li>         
+      195 +        <li>Google Digital Product Management</li>            
+      196 +      </ul>                                                   
+      197      </div>
+      206 -  </section> <!-- /my-work -->                                
+      198 +  </section> <!-- /education -->                              
+      199  
+      200    <!-- Footer -->
+      201    <footer class="footer">
+● 7. Footer — phone + location, plus cleaned-up resume link:
+
+● Update(index.html)
+  ⎿  Added 3 lines, removed 7 lines
+      199  
+      200    <!-- Footer -->
+      201    <footer class="footer">
+      202 -    <!-- replace with your own info -->                       
+      202      <a class="footer__link" href="mailto:daudfarzand89@gmail.c
+           om">daudfarzand89@gmail.com</a>
+      203 +    <p style="margin-top:.25em; opacity:.8;">(92) 345-5137420 
+          +· Lahore, Pakistan</p>                                        
+      204      <ul class="social-list">
+      205        <li class="social-list__item"><a class="social-list__lin
+           k"
+      206            href="https://www.linkedin.com/in/daud-farzand-98274
+           3192/"><i class="fab fa-linkedin"></i></a></li>
+     ...
+      208              class="fab fa-github"></i></a></li>
+      209        <li class="social-list__item"><a class="social-list__lin
+           k"
+      210            href="https://www.instagram.com/twenty_second_savage
+           /"><i class="fab fa-instagram"></i></a></li>
+      211 -      <!-- <li class="social-list__item"><a                   
+      212 -          class="social-list__link" href="https://drive.google
+          -.com/file/d/19l5vrwHuv5xEijrIfJTuLTbiI7fW-clB/view?usp=sharing
+          -"                                                             
+      213 -          target="_blank">resume</a></li> -->                 
+      214 -          <li class="social-list__item"><a                    
+      215 -            class="social-list__link" href="./files/Daud_Farza
+          -nd_Resume_2026_v2.pdf"                                        
+      216 -            target="_blank">My-Resume</a></li>                
+      211 +      <li class="social-list__item"><a class="social-list__lin
+          +k"                                                            
+      212 +          href="./files/Daud_Farzand_Resume_2026_v2.pdf" targe
+          +t="_blank">Resume</a></li>                                    
+      213      </ul>
+      214    </footer>
+      215  
+
+● Now verify the result is well-formed and the diff is bounded to index.html:
+
+  Ran 1 shell command (ctrl+o to expand)
+
+● index.html is the only file changed. Let me sanity-check the rendered
+  structure and that the resume link still resolves:
+
+  Searched for 1 pattern, listed 1 directory (ctrl+o to expand)
+
+● Anchors all wired, resume PDF is at ./files/Daud_Farzand_Resume_2026_v2.pdf.
+  Done.
+
+  ---
+  Summary
+
+  Updated index.html to reflect the 2026 v2 resume. Single file changed (+95 / 
+  -73).
+
+  Hero — tagline now AI Platform Engineer | RAG & LLM Infrastructure Specialist 
+  | MLOps.
+
+  What I do — three competency cards: RAG & LLM Infra · AI Platform & MLOps ·
+  Observability & Cloud Infra.
+
+  Who I am — replaced the devops-era bio with the four roles from the resume
+  (Tech Prysm · Techanzy · Programmer's Force · Unmatched Resumes), dates and
+  one-line summaries intact.
+
+  New: Technical Skills — six cards covering AI/ML, Backend & Frontend, Cloud &
+  DevOps, Data, Observability, Security & Auth. Inline background-image:none so
+  it doesn't reuse the services background image (one-off tweak; the class is
+  shared).
+
+  New: Education & Certifications — Goldsmiths ML/AI bachelor's (2023) plus the
+  three Google certs.
+
+  My work — trimmed from 8 generic cards to 5 AI/ML project cards: ServeLLM,
+  Enterprise RAG Pipeline, AI/ML Observability Stack, Vector DB Infrastructure,
+  Hybrid-Cloud LLM Deployment. Cards link to existing portfolio-item*.html pages
+  per your call to leave them.
+
+  Footer — added phone (92) 345-5137420 and "Lahore, Pakistan"; cleaned up the
+  resume link (still points to ./files/Daud_Farzand_Resume_2026_v2.pdf, which
+  exists at 109,989 bytes).
+
+  Nav — added Experience / Skills / Education anchors.
+
+  Skipped (per scope): no CSS edits, no other portfolio-item*.html rewrites, no
+  favicon, no schema.org markup, no testimonials/blog section.
+
+  To preview: python -m http.server in the repo root, then open
+  http://localhost:8000/.
+
+✻ Cogitated for 4m 0s
+
+❯ /effort                                                                       
+  ⎿  Set effort level to medium (saved as your default for new sessions):
+     Balanced approach with standard implementation and testing
+
+❯ /model                                                                        
+  ⎿  Set model to minimax-m3:cloud and saved as your default for new sessions
+
+❯ [Image #1] remove Linux-Python-Resources                                      
+  data sysadmin from nav bar                                                    
+  ⎿  [Image #1]
+
+● Update(index.html)
+  ⎿  Removed 2 lines
+      44          <li class="nav__item"><a class="nav__link" href="#skill
+          s">Skills</a></li>
+      45          <li class="nav__item"><a class="nav__link" href="#work"
+          >My Work</a></li>
+      46          <li class="nav__item"><a class="nav__link" href="#educa
+          tion">Education</a></li>
+      47 -        <li class="nav__item"><a class="nav__link" href="portfo
+         -lio-item06.html">Linux-Python-Resources</a></li>               
+      48 -        <li class="nav__item"><a class="nav__link" href="sql.ht
+         -ml">data sysadmin</a></li>                                     
+      47        </ul>
+      48      </nav>
+      49    </header>
+
+● Removed Linux-Python-Resources and data sysadmin from the nav. Nav now: Home ·
+  Services · Experience · Skills · My Work · Education.
+
+✻ Baked for 12s

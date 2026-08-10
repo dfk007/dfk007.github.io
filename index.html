@@ -1,220 +1,1039 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-  <title>Daud Farzand Portfolio Website</title>
-  <link href="https:/cdnjs.cloudflare.com/ajax/libs/normalize/7.0.0/normalize.min.css" rel="stylesheet"">
-    <link
-      crossorigin="anonymous" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.css"
-    integrity="sha256-46qynGAkLSFpVbEBog43gvNhfrOj+BmwXdxFgVK/Kvc=" rel=" stylesheet" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Daud Farzand — AI Platform Infrastructure Engineer</title>
+<meta name="description" content="Daud Farzand — AI Platform Infrastructure Engineer specializing in RAG pipelines, MCP, LLM serving, and multi-tenant infrastructure." />
 
-  <!-- Update these with your own fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,900|Source+Sans+Pro:300,900&display=swap"
-    rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-  <link href="css/style.css" rel="stylesheet">
-  <link href="https://s.pageclip.co/v1/pageclip.css" media="screen" rel="stylesheet">
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root{
+  --bg:#0B0E14;
+  --panel:#111623;
+  --panel-2:#161C2C;
+  --border:#232A3D;
+  --text:#E8EAED;
+  --text-dim:#8B93A7;
+  --text-faint:#545D74;
+  --signal:#5EEAD4;
+  --signal-dim:#5EEAD422;
+  --warn:#F59E0B;
+  --danger:#F87171;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --font-sans:'Inter',system-ui,-apple-system,sans-serif;
+  --rail-w:220px;
+  --radius:3px;
+  --maxw:1180px;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto;}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
+}
+
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-sans);
+  font-size:16px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 15% 8%, #5EEAD40d 0%, transparent 40%),
+    radial-gradient(circle at 85% 92%, #5EEAD408 0%, transparent 45%);
+}
+
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+ul{list-style:none;}
+
+::selection{background:var(--signal);color:#0B0E14;}
+
+:focus-visible{
+  outline:2px solid var(--signal);
+  outline-offset:3px;
+  border-radius:2px;
+}
+
+::-webkit-scrollbar{width:10px;}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px;}
+::-webkit-scrollbar-thumb:hover{background:var(--text-faint);}
+
+.mono{font-family:var(--font-mono);}
+.eyebrow{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:var(--signal);
+  display:flex;
+  align-items:center;
+  gap:.6em;
+  margin-bottom:1rem;
+}
+.eyebrow::before{
+  content:'';
+  width:6px;height:6px;
+  background:var(--signal);
+  border-radius:50%;
+  box-shadow:0 0 8px var(--signal);
+  flex-shrink:0;
+}
+
+.container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem);}
+
+h1,h2,h3{font-family:var(--font-mono);font-weight:700;line-height:1.15;letter-spacing:-.01em;}
+
+.section-head{margin-bottom:clamp(2rem,5vw,3.25rem);}
+.section-title{
+  font-size:clamp(1.6rem,3.6vw,2.4rem);
+  color:var(--text);
+}
+.section-title .dim{color:var(--text-faint);}
+.section-sub{
+  font-family:var(--font-sans);
+  color:var(--text-dim);
+  margin-top:.6rem;
+  max-width:60ch;
+  font-size:1rem;
+}
+
+section{padding:clamp(3.5rem,8vw,6rem) 0;border-bottom:1px solid var(--border);}
+section:last-of-type{border-bottom:none;}
+
+/* ============================================================
+   LAYOUT SHELL — status rail (desktop) / top bar (mobile)
+   ============================================================ */
+.shell{display:flex;min-height:100vh;}
+
+.rail{
+  width:var(--rail-w);
+  flex-shrink:0;
+  position:fixed;
+  top:0;left:0;bottom:0;
+  border-right:1px solid var(--border);
+  background:var(--panel);
+  display:flex;
+  flex-direction:column;
+  z-index:100;
+}
+.rail__brand{
+  padding:1.5rem 1.25rem;
+  border-bottom:1px solid var(--border);
+}
+.rail__brand a{
+  font-family:var(--font-mono);
+  font-weight:800;
+  font-size:1.05rem;
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+.rail__brand .caret{color:var(--signal);}
+.rail__brand small{
+  display:block;
+  font-family:var(--font-sans);
+  font-weight:400;
+  color:var(--text-faint);
+  font-size:.72rem;
+  margin-top:.35rem;
+  letter-spacing:.02em;
+}
+
+.rail__nav{flex:1;padding:1.25rem .75rem;}
+.rail__nav a{
+  display:flex;
+  align-items:center;
+  gap:.65rem;
+  padding:.6rem .75rem;
+  border-radius:var(--radius);
+  font-family:var(--font-mono);
+  font-size:.82rem;
+  color:var(--text-dim);
+  transition:background .15s, color .15s;
+  margin-bottom:.15rem;
+}
+.rail__nav a .idx{color:var(--text-faint);font-size:.72rem;}
+.rail__nav a:hover, .rail__nav a.active{
+  background:var(--signal-dim);
+  color:var(--signal);
+}
+.rail__nav a.active .idx{color:var(--signal);}
+
+.rail__foot{
+  padding:1.25rem;
+  border-top:1px solid var(--border);
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  color:var(--text-faint);
+}
+.rail__foot .uptime-row{display:flex;justify-content:space-between;margin-bottom:.3rem;}
+.rail__foot .uptime-val{color:var(--signal);}
+
+/* Mobile top bar */
+.topbar{
+  display:none;
+  position:fixed;top:0;left:0;right:0;
+  height:60px;
+  background:rgba(11,14,20,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
+  z-index:200;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 1.1rem;
+}
+.topbar__brand{font-family:var(--font-mono);font-weight:800;font-size:1rem;display:flex;align-items:center;gap:.4rem;}
+.topbar__brand .caret{color:var(--signal);}
+.menu-btn{
+  width:38px;height:38px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text);
+  font-size:1.1rem;
+  cursor:pointer;
+}
+
+.mobile-nav{
+  display:none;
+  position:fixed;top:60px;left:0;right:0;bottom:0;
+  background:var(--bg);
+  z-index:199;
+  padding:1.5rem;
+  overflow-y:auto;
+}
+.mobile-nav.open{display:block;}
+.mobile-nav a{
+  display:flex;align-items:center;gap:.75rem;
+  padding:1rem .5rem;
+  border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);
+  font-size:1rem;
+  color:var(--text-dim);
+}
+.mobile-nav a .idx{color:var(--text-faint);font-size:.8rem;}
+.mobile-nav a.active{color:var(--signal);}
+
+.main{flex:1;margin-left:var(--rail-w);min-width:0;}
+
+@media (max-width:900px){
+  .rail{display:none;}
+  .topbar{display:flex;}
+  .main{margin-left:0;padding-top:60px;}
+}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{
+  padding:clamp(3rem,9vw,6rem) 0 clamp(2.5rem,6vw,4rem);
+  border-bottom:1px solid var(--border);
+}
+.hero__grid{
+  display:grid;
+  grid-template-columns:1.3fr .7fr;
+  gap:clamp(2rem,5vw,4rem);
+  align-items:center;
+}
+@media (max-width:800px){
+  .hero__grid{grid-template-columns:1fr;}
+  .hero__portrait{order:-1;max-width:180px;margin:0 auto 1rem;}
+}
+
+.hero__name{
+  font-size:clamp(2.2rem,6vw,3.6rem);
+  line-height:1.05;
+  margin-bottom:1rem;
+}
+.hero__name .accent{color:var(--signal);}
+.hero__role{
+  font-family:var(--font-mono);
+  color:var(--text-dim);
+  font-size:clamp(.95rem,2vw,1.15rem);
+  margin-bottom:1.5rem;
+  letter-spacing:.01em;
+}
+.hero__role .sep{color:var(--text-faint);margin:0 .5em;}
+.hero__desc{
+  color:var(--text-dim);
+  max-width:56ch;
+  font-size:1.02rem;
+  margin-bottom:2rem;
+}
+
+.hero__ctas{display:flex;gap:.9rem;flex-wrap:wrap;}
+.btn{
+  font-family:var(--font-mono);
+  font-size:.85rem;
+  font-weight:500;
+  padding:.85rem 1.4rem;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  display:inline-flex;
+  align-items:center;
+  gap:.55rem;
+  transition:border-color .15s, background .15s, transform .15s;
+  cursor:pointer;
+}
+.btn--primary{
+  background:var(--signal);
+  color:#08121A;
+  border-color:var(--signal);
+  font-weight:700;
+}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px -6px #5EEAD466;}
+.btn--ghost{color:var(--text);background:var(--panel);}
+.btn--ghost:hover{border-color:var(--signal);color:var(--signal);}
+
+.hero__portrait{
+  aspect-ratio:1;
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:var(--panel);
+  overflow:hidden;
+  position:relative;
+}
+.hero__portrait img{width:100%;height:100%;object-fit:cover;}
+.hero__portrait .scanline{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 0%, #5EEAD411 50%, transparent 100%);
+  pointer-events:none;
+}
+.hero__portrait-frame{
+  position:absolute;top:.6rem;left:.6rem;right:.6rem;
+  display:flex;justify-content:space-between;
+  font-family:var(--font-mono);font-size:.65rem;
+  color:var(--signal);
+  opacity:.85;
+}
+
+/* --- Signature element: service status strip --- */
+.statusbar{
+  margin-top:clamp(2.5rem,5vw,3.5rem);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--panel);
+  overflow:hidden;
+}
+.statusbar__head{
+  padding:.7rem 1rem;
+  border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  color:var(--text-faint);
+  display:flex;
+  align-items:center;
+  gap:.5rem;
+}
+.statusbar__head .dots{display:flex;gap:.35rem;margin-right:.4rem;}
+.statusbar__head .dots span{width:7px;height:7px;border-radius:50%;background:var(--border);}
+.statusbar__list{display:flex;flex-direction:column;}
+.statusbar__row{
+  display:grid;
+  grid-template-columns:auto 1fr auto auto;
+  gap:1rem;
+  align-items:center;
+  padding:.85rem 1rem;
+  border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);
+  font-size:.8rem;
+}
+.statusbar__row:last-child{border-bottom:none;}
+.statusbar__row .pulse{
+  width:8px;height:8px;border-radius:50%;
+  background:var(--signal);
+  box-shadow:0 0 0 0 #5EEAD466;
+  animation:pulse 2.2s infinite;
+  flex-shrink:0;
+}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 #5EEAD466;}
+  70%{box-shadow:0 0 0 7px #5EEAD400;}
+  100%{box-shadow:0 0 0 0 #5EEAD400;}
+}
+.statusbar__row .svc-name{color:var(--text);font-weight:500;}
+.statusbar__row .svc-meta{color:var(--text-faint);display:none;}
+.statusbar__row .svc-metric{color:var(--signal);text-align:right;white-space:nowrap;}
+@media (min-width:640px){
+  .statusbar__row{grid-template-columns:auto 1fr auto auto auto;}
+  .statusbar__row .svc-meta{display:block;}
+}
+@media (max-width:480px){
+  .statusbar__row{grid-template-columns:auto 1fr auto;font-size:.72rem;}
+  .statusbar__row .svc-metric:last-child{display:none;}
+}
+
+/* ============================================================
+   SERVICES / WHAT I DO
+   ============================================================ */
+.services-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1.25rem;
+}
+@media (max-width:900px){.services-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:640px){.services-grid{grid-template-columns:1fr;}}
+
+.svc-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.75rem;
+  transition:border-color .2s, transform .2s;
+  position:relative;
+}
+.svc-card:hover{border-color:#5EEAD455;transform:translateY(-3px);}
+.svc-card__icon{
+  width:42px;height:42px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--signal);
+  font-size:1.1rem;
+  margin-bottom:1.25rem;
+  background:var(--signal-dim);
+}
+.svc-card h3{font-size:1.05rem;margin-bottom:.7rem;color:var(--text);}
+.svc-card p{color:var(--text-dim);font-size:.9rem;line-height:1.65;}
+.svc-card .tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;}
+.tag{
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  padding:.25rem .55rem;
+  border:1px solid var(--border);
+  border-radius:2px;
+  color:var(--text-faint);
+}
+
+/* ============================================================
+   EXPERIENCE (timeline as service log)
+   ============================================================ */
+.exp-list{display:flex;flex-direction:column;gap:0;}
+.exp-item{
+  display:grid;
+  grid-template-columns:180px 1fr;
+  gap:clamp(1rem,3vw,2.5rem);
+  padding:2rem 0;
+  border-bottom:1px solid var(--border);
+}
+.exp-item:first-child{padding-top:0;}
+.exp-item:last-child{border-bottom:none;padding-bottom:0;}
+@media (max-width:720px){
+  .exp-item{grid-template-columns:1fr;gap:.75rem;}
+}
+
+.exp-item__period{
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  color:var(--text-faint);
+  padding-top:.15rem;
+}
+.exp-item__period .status-pill{
+  display:inline-flex;align-items:center;gap:.4rem;
+  color:var(--signal);
+  margin-bottom:.5rem;
+}
+.exp-item__period .status-pill .pulse{width:6px;height:6px;border-radius:50%;background:var(--signal);animation:pulse 2.2s infinite;}
+
+.exp-item__role{font-size:1.15rem;color:var(--text);margin-bottom:.15rem;}
+.exp-item__org{
+  font-family:var(--font-mono);
+  color:var(--signal);
+  font-size:.85rem;
+  margin-bottom:1rem;
+}
+.exp-item__bullets{display:flex;flex-direction:column;gap:.55rem;}
+.exp-item__bullets li{
+  color:var(--text-dim);
+  font-size:.92rem;
+  padding-left:1.3rem;
+  position:relative;
+  line-height:1.65;
+}
+.exp-item__bullets li::before{
+  content:'›';
+  position:absolute;left:0;top:0;
+  color:var(--signal);
+  font-weight:700;
+}
+.exp-item__bullets strong{color:var(--text);font-weight:600;}
+
+/* ============================================================
+   SKILLS — grouped mono panels
+   ============================================================ */
+.skills-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:1rem;
+}
+@media (max-width:900px){.skills-grid{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.skills-grid{grid-template-columns:1fr;}}
+
+.skill-panel{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+}
+.skill-panel__head{
+  padding:.75rem 1rem;
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;gap:.6rem;
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  color:var(--text);
+  background:var(--panel-2);
+}
+.skill-panel__head i{color:var(--signal);width:1em;text-align:center;}
+.skill-panel__body{padding:1rem;display:flex;flex-wrap:wrap;gap:.4rem;}
+
+/* ============================================================
+   WORK / PORTFOLIO
+   ============================================================ */
+.work-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1.25rem;
+}
+@media (max-width:720px){.work-grid{grid-template-columns:1fr;}}
+
+.work-card{
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--panel);
+  overflow:hidden;
+  display:block;
+  transition:border-color .2s, transform .2s;
+  position:relative;
+}
+.work-card:hover{border-color:#5EEAD455;transform:translateY(-3px);}
+.work-card__top{
+  padding:1.5rem 1.5rem 0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.work-card__index{font-family:var(--font-mono);color:var(--text-faint);font-size:.75rem;}
+.work-card__arrow{color:var(--signal);font-size:.9rem;transition:transform .2s;}
+.work-card:hover .work-card__arrow{transform:translate(3px,-3px);}
+.work-card__body{padding:.75rem 1.5rem 1.5rem;}
+.work-card h3{font-size:1.05rem;color:var(--text);margin-bottom:.6rem;line-height:1.35;}
+.work-card p{color:var(--text-dim);font-size:.88rem;margin-bottom:1rem;}
+.work-card .tag-row{display:flex;flex-wrap:wrap;gap:.4rem;}
+
+/* ============================================================
+   EDUCATION
+   ============================================================ */
+.edu-grid{
+  display:grid;
+  grid-template-columns:1.3fr 1fr;
+  gap:2rem;
+}
+@media (max-width:800px){.edu-grid{grid-template-columns:1fr;}}
+.edu-card, .cert-card{
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:1.75rem;
+}
+.edu-card h3, .cert-card h3{
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  letter-spacing:.1em;
+  text-transform:uppercase;
+  color:var(--signal);
+  margin-bottom:1rem;
+}
+.edu-card .deg{font-size:1.1rem;color:var(--text);margin-bottom:.3rem;}
+.edu-card .sch{color:var(--text-dim);font-size:.9rem;font-family:var(--font-mono);}
+.cert-card ul{display:flex;flex-direction:column;gap:.7rem;}
+.cert-card li{
+  color:var(--text-dim);
+  font-size:.88rem;
+  padding-left:1.3rem;
+  position:relative;
+}
+.cert-card li::before{content:'✓';position:absolute;left:0;color:var(--signal);font-family:var(--font-mono);}
+
+/* ============================================================
+   CONTACT / FOOTER
+   ============================================================ */
+.contact{text-align:center;}
+.contact .section-head{margin-bottom:2.5rem;}
+.contact__email{
+  font-family:var(--font-mono);
+  font-size:clamp(1.3rem,4vw,2rem);
+  color:var(--signal);
+  display:inline-block;
+  margin-bottom:.75rem;
+  word-break:break-word;
+}
+.contact__email:hover{text-decoration:underline;}
+.contact__meta{color:var(--text-dim);font-size:.9rem;margin-bottom:2rem;}
+.social-row{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;}
+.social-row a{
+  width:46px;height:46px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-dim);
+  font-size:1.15rem;
+  transition:all .15s;
+}
+.social-row a:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-2px);}
+
+.footer{
+  text-align:center;
+  padding:2rem 0 3rem;
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  color:var(--text-faint);
+}
+.footer .accent{color:var(--signal);}
+
+/* back to top */
+.totop{
+  position:fixed;
+  bottom:1.5rem;right:1.5rem;
+  width:44px;height:44px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--text-dim);
+  opacity:0;
+  pointer-events:none;
+  transition:opacity .2s, border-color .15s, color .15s;
+  z-index:150;
+}
+.totop.show{opacity:1;pointer-events:auto;}
+.totop:hover{border-color:var(--signal);color:var(--signal);}
+</style>
 </head>
-
 <body>
-  <header>
 
+<!-- Mobile top bar -->
+<header class="topbar">
+  <a href="#home" class="topbar__brand"><span class="caret">&gt;</span>daud<span class="caret">_</span></a>
+  <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
+    <i class="fas fa-bars" id="menuIcon"></i>
+  </button>
+</header>
 
-    <div class="logo">
-      <!--           <img src="img/devdaud.png" alt=""> -->
+<nav class="mobile-nav" id="mobileNav">
+  <a href="#home" class="nav-link"><span class="idx">01</span> home</a>
+  <a href="#services" class="nav-link"><span class="idx">02</span> services</a>
+  <a href="#experience" class="nav-link"><span class="idx">03</span> experience</a>
+  <a href="#skills" class="nav-link"><span class="idx">04</span> skills</a>
+  <a href="#work" class="nav-link"><span class="idx">05</span> work</a>
+  <a href="#education" class="nav-link"><span class="idx">06</span> education</a>
+  <a href="#contact" class="nav-link"><span class="idx">07</span> contact</a>
+</nav>
 
-      <a href="#home"><img alt="" src="img/devdaud.png"></a>
-
+<div class="shell">
+  <!-- Desktop status rail -->
+  <aside class="rail">
+    <div class="rail__brand">
+      <a href="#home"><span class="caret">&gt;</span>daud<span class="caret">_</span></a>
+      <small>AI Platform Infra Eng.</small>
     </div>
-
-    <button aria-label="toggle navigation" class="nav-toggle">
-      <span class="hamburger"></span>
-    </button>
-    <nav class="nav">
-      <ul class="nav__list">
-        <li class="nav__item"><a class="nav__link" href="#home">Home</a></li>
-        <li class="nav__item"><a class="nav__link" href="#services">Services</a></li>
-        <li class="nav__item"><a class="nav__link" href="#about">Experience</a></li>
-        <li class="nav__item"><a class="nav__link" href="#skills">Skills</a></li>
-        <li class="nav__item"><a class="nav__link" href="#work">My Work</a></li>
-        <li class="nav__item"><a class="nav__link" href="#education">Education</a></li>
-      </ul>
+    <nav class="rail__nav">
+      <a href="#home" class="nav-link"><span class="idx">01</span> home</a>
+      <a href="#services" class="nav-link"><span class="idx">02</span> services</a>
+      <a href="#experience" class="nav-link"><span class="idx">03</span> experience</a>
+      <a href="#skills" class="nav-link"><span class="idx">04</span> skills</a>
+      <a href="#work" class="nav-link"><span class="idx">05</span> work</a>
+      <a href="#education" class="nav-link"><span class="idx">06</span> education</a>
+      <a href="#contact" class="nav-link"><span class="idx">07</span> contact</a>
     </nav>
-  </header>
-
-  <!-- Introduction -->
-  <section class="intro" id="home">
-    <h1 class="section__title section__title--intro">
-      Hi, I am <strong>Daud Farzand</strong>
-    </h1>
-    <p class="section__subtitle section__subtitle--intro">AI PLATFORM ENGINEER | RAG & LLM INFRASTRUCTURE SPECIALIST | MLOPS</p>
-    <img alt="a picture of Daud Farzand smiling" class="intro__img" src="img/pp.jfif" />
-  </section>
-
-  <!-- My Services -->
-  <section class="my-services" id="services">
-    <h2 class="section__title section__title--services">What I do</h2>
-    <div class="services">
-      <div class="service">
-        <h3>RAG &amp; LLM Infrastructure</h3>
-        <p>I build production RAG pipelines with the Model Context Protocol (MCP), manage vector databases (pgvector, Pinecone, Weaviate, Chroma), and serve LLMs through OpenAI-compatible APIs with token tracking and per-tenant analytics.</p>
-      </div>
-      <!-- /service -->
-
-      <div class="service">
-        <h3>AI Platform &amp; MLOps</h3>
-        <p>I architect multi-tenant SaaS for AI workloads on FastAPI and Next.js 15, deploy inference on Vertex AI and AWS Bedrock, and ship ML models through GitHub Actions, GitLab CI/CD, Terraform, and ArgoCD.</p>
-      </div>
-      <!-- /service -->
-
-      <div class="service">
-        <h3>Observability &amp; Cloud Infra</h3>
-        <p>I run Docker, Kubernetes, and Helm on hybrid cloud (AWS, GCP, on-prem GPU), instrument AI/ML workloads with Prometheus, Grafana, and OpenTelemetry, and tune inference cost, latency, and uptime.</p>
-      </div>
-      <!-- /service -->
-    </div> <!-- /services -->
-
-    <a class="btn" href="#work">My Work</a>
-  </section> <!-- /my-services -->
-
-  <!-- About Me -->
-  <section class="about-me" id="about">
-    <h2 class="section__title section__title--about">Who I am</h2>
-    <p class="section__subtitle section__subtitle--about">AI Platform Engineer based in Lahore, Pakistan</p>
-
-    <div class="about-me__body">
-      <p>AI Platform Infrastructure Engineer specializing in RAG pipelines, Model Context Protocol (MCP), and LLM serving on Google Cloud (Vertex AI) and AWS. Expert in vector database management, containerized model serving, token tracking, and multi-tenant SaaS delivery of AI services — built for enterprise-grade observability and cost optimization.</p>
-
-      <p><strong>Tech Prysm</strong> — AI Platform Infrastructure Engineer <em>(Oct 2025 – Present)</em><br>
-        Production RAG pipelines with 40% accuracy lift, MCP infrastructure, Vertex AI workloads at 99.9% uptime, CI/CD for ML models, observability stack, vector DB infra for 10M+ chunks, 35% LLM cost reduction.</p>
-
-      <p><strong>Techanzy Limited</strong> — AI Platform Engineer | RAG &amp; LLM Infrastructure | MLOps <em>(May 2024 – Sept 2025)</em><br>
-        Architected <em>ServeLLM</em>, a privacy-first OpenAI-compatible LLM platform with SSE streaming (&lt;50ms TTFT), token tracking &amp; billing, hybrid-cloud inference (AWS + GCP + on-prem GPU), 5-tier RBAC, and &lt;1.5GB memory footprint per service.</p>
-
-      <p><strong>Programmer's Force Pvt Ltd</strong> — DevOps Engineer <em>(Jan 2023 – Mar 2024)</em><br>
-        Containerized apps with Docker, built GitLab CI/CD, automated config with Ansible, deployed Grafana/Prometheus monitoring, wrote backup/recovery playbooks, and hardened Kubernetes with RBAC and security policies.</p>
-
-      <p><strong>Unmatched Resumes LLC</strong> — Technology Director (Lead Engineer – Program Management) <em>(Mar 2022 – Dec 2022)</em><br>
-        Led a WordPress web platform (30% engagement lift), managed release pipeline and product backlog, drove engineering capacity planning.</p>
+    <div class="rail__foot">
+      <div class="uptime-row"><span>node</span><span class="uptime-val">lahore-pk</span></div>
+      <div class="uptime-row"><span>uptime</span><span class="uptime-val">99.9%</span></div>
+      <div class="uptime-row"><span>status</span><span class="uptime-val">available</span></div>
     </div>
+  </aside>
 
-    <img alt="Daud Farzand" class="about-me__img" src="img/developer.jfif">
-  </section> <!-- /about-me -->
+  <main class="main">
 
-  <!-- Technical Skills -->
-  <section class="my-services" id="skills" style="background-image:none;">
-    <h2 class="section__title section__title--services">Technical Skills</h2>
-    <div class="services">
-      <div class="service">
-        <h3>AI / ML</h3>
-        <p>RAG pipelines · Model Context Protocol (MCP) · Vertex AI · Ollama · OpenAI API · LangChain · tiktoken · Embedding models</p>
-        <p>Vector DBs: pgvector · Pinecone · Weaviate · Chroma</p>
+    <!-- HOME / HERO -->
+    <section class="hero" id="home">
+      <div class="container">
+        <div class="hero__grid">
+          <div>
+            <div class="eyebrow">status: open to opportunities</div>
+            <h1 class="hero__name">Daud Farzand<span class="accent">.</span></h1>
+            <p class="hero__role">AI Platform Infra Engineer<span class="sep">/</span>RAG &amp; LLM Systems<span class="sep">/</span>MLOps</p>
+            <p class="hero__desc">I build production RAG pipelines, multi-tenant LLM serving platforms, and the observability/CI-CD scaffolding that keeps them at 99.9% uptime — on Vertex AI, AWS, and self-hosted GPU infra, glued together with Terraform, Ansible, and WireGuard.</p>
+            <div class="hero__ctas">
+              <a href="#work" class="btn btn--primary"><i class="fas fa-terminal"></i> View systems</a>
+              <a href="./files/Daud_Farzand_Resume_2026_v2.pdf" target="_blank" class="btn btn--ghost"><i class="fas fa-file-arrow-down"></i> Resume</a>
+              <a href="#contact" class="btn btn--ghost"><i class="fas fa-satellite-dish"></i> Contact</a>
+            </div>
+          </div>
+          <div class="hero__portrait">
+            <!-- <div class="hero__portrait-frame"><span>IMG_01</span><span>1:1</span></div> -->
+            <img src="img/pp.jfif" alt="Portrait of Daud Farzand" onerror="this.parentElement.style.display='none'">
+            <div class="scanline"></div>
+          </div>
+        </div>
+
+        <!-- Signature: service status strip -->
+        <div class="statusbar">
+          <div class="statusbar__head">
+            <span class="dots"><span></span><span></span><span></span></span>
+            infra --status --watch
+          </div>
+          <div class="statusbar__list">
+            <div class="statusbar__row">
+              <span class="pulse"></span>
+              <span class="svc-name">servellm</span>
+              <span class="svc-meta">SSE · &lt;50ms TTFT</span>
+              <span class="svc-metric">99.9% up</span>
+            </div>
+            <div class="statusbar__row">
+              <span class="pulse"></span>
+              <span class="svc-name">rag-pipeline</span>
+              <span class="svc-meta">pgvector · 10M+ chunks</span>
+              <span class="svc-metric">+40% acc</span>
+            </div>
+            <div class="statusbar__row">
+              <span class="pulse"></span>
+              <span class="svc-name">mcp-gateway</span>
+              <span class="svc-meta">multi-provider routing</span>
+              <span class="svc-metric">-70% integ</span>
+            </div>
+            <div class="statusbar__row">
+              <span class="pulse"></span>
+              <span class="svc-name">pgbouncer</span>
+              <span class="svc-meta">txn mode · 200 conns</span>
+              <span class="svc-metric">&lt;20ms p99</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service">
-        <h3>Backend &amp; Frontend</h3>
-        <p>FastAPI · Python 3.11+ · REST · SSE streaming · gRPC · microservices</p>
-        <p>Next.js 15 · React 19 · TypeScript · Tailwind CSS · SSR</p>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">02 · capabilities</div>
+          <h2 class="section-title">What I <span class="dim">run</span> in production</h2>
+          <p class="section-sub">Three service domains I own end-to-end, from architecture through on-call.</p>
+        </div>
+        <div class="services-grid">
+          <div class="svc-card">
+            <div class="svc-card__icon"><i class="fas fa-diagram-project"></i></div>
+            <h3>RAG &amp; LLM Infrastructure</h3>
+            <p>Production RAG pipelines with the Model Context Protocol (MCP), vector database management (pgvector, Pinecone, Weaviate, Chroma), and OpenAI-compatible serving with per-tenant token tracking.</p>
+            <div class="tag-row">
+              <span class="tag">pgvector</span><span class="tag">MCP</span><span class="tag">tiktoken</span>
+            </div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-card__icon"><i class="fas fa-server"></i></div>
+            <h3>AI Platform &amp; MLOps</h3>
+            <p>Multi-tenant SaaS for AI workloads on FastAPI and Next.js 15, inference on Vertex AI and AWS Bedrock, shipped through GitHub Actions, GitLab CI/CD, Terraform, and ArgoCD.</p>
+            <div class="tag-row">
+              <span class="tag">FastAPI</span><span class="tag">Terraform</span><span class="tag">ArgoCD</span>
+            </div>
+          </div>
+          <div class="svc-card">
+            <div class="svc-card__icon"><i class="fas fa-chart-line"></i></div>
+            <h3>Observability &amp; Cloud Infra</h3>
+            <p>Docker, Kubernetes, and Helm on hybrid cloud (AWS, GCP, on-prem GPU). Prometheus, Grafana, and OpenTelemetry instrumentation tuned for inference cost, latency, and uptime.</p>
+            <div class="tag-row">
+              <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">OTel</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service">
-        <h3>Cloud &amp; DevOps</h3>
-        <p>GCP: Vertex AI · Cloud Run · GKE · BigQuery</p>
-        <p>AWS: EC2 · EKS · S3 · Lambda · Bedrock</p>
-        <p>Docker · Kubernetes · Helm · ArgoCD · Terraform · Ansible · WireGuard</p>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <section id="experience">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">03 · service log</div>
+          <h2 class="section-title">Where I've <span class="dim">deployed</span></h2>
+          <p class="section-sub">Four years, four environments — DevOps foundations through AI platform architecture.</p>
+        </div>
+
+        <div class="exp-list">
+          <div class="exp-item">
+            <div class="exp-item__period">
+              <span class="status-pill"><span class="pulse"></span>running</span><br>
+              Oct 2025 – Present
+            </div>
+            <div>
+              <h3 class="exp-item__role">AI Platform Infrastructure Engineer</h3>
+              <div class="exp-item__org">Tech Prysm · Remote (US-based)</div>
+              <ul class="exp-item__bullets">
+                <li>Architected production <strong>RAG pipelines</strong> integrating pgvector &amp; Pinecone with LLM inference, lifting response accuracy <strong>40%</strong> for enterprise knowledge bases.</li>
+                <li>Implemented <strong>Model Context Protocol (MCP)</strong> infrastructure unifying OpenAI, Anthropic, and Google providers behind one API — cutting integration time <strong>70%</strong>.</li>
+                <li>Ran <strong>Vertex AI</strong> workloads with blue-green model versioning, achieving <strong>99.9% uptime</strong> on inference services.</li>
+                <li>Built end-to-end CI/CD with <strong>GitHub Actions + Terraform</strong> for reproducible, auditable ML deployments across dev/staging/prod.</li>
+                <li>Designed the <strong>Prometheus/Grafana/OpenTelemetry</strong> observability stack — p99 inference latency &lt;100ms, token usage, and RAG retrieval accuracy.</li>
+                <li>Scaled vector infra to <strong>10M+ chunks</strong> with sub-second query latency; cut LLM API costs <strong>35%</strong> via caching, streaming, and intelligent routing.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-item__period">May 2024 – Sept 2025</div>
+            <div>
+              <h3 class="exp-item__role">AI Platform Engineer — RAG &amp; LLM Infrastructure, MLOps</h3>
+              <div class="exp-item__org">Techanzy Limited · Lahore, Pakistan</div>
+              <ul class="exp-item__bullets">
+                <li>Architected <strong>ServeLLM</strong>, a privacy-first OpenAI-compatible platform (FastAPI + Next.js 15 + PgBouncer + MinIO + Ollama), zero vendor lock-in.</li>
+                <li>Shipped SSE streaming for <strong>500+ concurrent sessions</strong> at <strong>&lt;50ms</strong> time-to-first-token, full parity with streaming/non-streaming modes.</li>
+                <li>Built token tracking &amp; billing on <strong>tiktoken</strong> with real-time per-org, per-model usage analytics.</li>
+                <li>Tuned <strong>PostgreSQL + PgBouncer</strong> (transaction mode, 200 max conns) — <strong>60%</strong> less connection overhead, &lt;20ms query latency at 1000+ concurrent users.</li>
+                <li>Delivered <strong>5-tier RBAC</strong> multi-tenant isolation (SUPERADMIN → BILLING_USER) for secure SaaS delivery to enterprise clients.</li>
+                <li>Provisioned hybrid-cloud infra via <strong>Terraform + WireGuard</strong> linking AWS/GCP to an on-prem Proxmox GPU server — <strong>90%</strong> faster deployment, &lt;1.5GB memory footprint per service.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-item__period">Jan 2023 – Mar 2024</div>
+            <div>
+              <h3 class="exp-item__role">DevOps Engineer</h3>
+              <div class="exp-item__org">Programmer's Force Pvt Ltd · Lahore, Pakistan</div>
+              <ul class="exp-item__bullets">
+                <li>Containerized applications with <strong>Docker</strong> for reliable staging/production delivery; automated pipelines in <strong>GitLab CI/CD</strong>.</li>
+                <li>Automated provisioning with <strong>Ansible</strong>, eliminating manual config drift.</li>
+                <li>Deployed <strong>Grafana/Prometheus</strong> monitoring and cut recovery time <strong>80%</strong> with backup/rebuild scripts.</li>
+                <li>Hardened <strong>Kubernetes RBAC</strong> and security policies across production clusters.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="exp-item">
+            <div class="exp-item__period">Mar 2022 – Dec 2022</div>
+            <div>
+              <h3 class="exp-item__role">Technology Director — Lead Engineer, Program Management</h3>
+              <div class="exp-item__org">Unmatched Resumes LLC · Pennsylvania, US</div>
+              <ul class="exp-item__bullets">
+                <li>Led a WordPress platform rebuild — <strong>30%</strong> engagement lift via iterative releases.</li>
+                <li>Owned backlog, release pipeline, and engineering capacity planning across sprint cadences.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service">
-        <h3>Data</h3>
-        <p>PostgreSQL · pgvector · PgBouncer · Redis · SQLAlchemy · Alembic</p>
-        <p>MinIO (S3-compatible) · Google Cloud Storage</p>
+    </section>
+
+    <!-- SKILLS -->
+    <section id="skills">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">04 · stack</div>
+          <h2 class="section-title">Technical <span class="dim">stack</span></h2>
+          <p class="section-sub">Grouped by domain — the tools I reach for daily, not a keyword dump.</p>
+        </div>
+        <div class="skills-grid">
+          <div class="skill-panel">
+            <div class="skill-panel__head"><i class="fas fa-brain"></i> AI / ML</div>
+            <div class="skill-panel__body">
+              <span class="tag">RAG</span><span class="tag">MCP</span><span class="tag">Vertex AI</span><span class="tag">Ollama</span><span class="tag">OpenAI API</span><span class="tag">LangChain</span><span class="tag">tiktoken</span><span class="tag">pgvector</span><span class="tag">Pinecone</span><span class="tag">Weaviate</span><span class="tag">Chroma</span>
+            </div>
+          </div>
+          <div class="skill-panel">
+            <div class="skill-panel__head"><i class="fas fa-code"></i> Backend / Frontend</div>
+            <div class="skill-panel__body">
+              <span class="tag">FastAPI</span><span class="tag">Python 3.11+</span><span class="tag">SSE</span><span class="tag">gRPC</span><span class="tag">Next.js 15</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Tailwind</span>
+            </div>
+          </div>
+          <div class="skill-panel">
+            <div class="skill-panel__head"><i class="fas fa-cloud"></i> Cloud / DevOps</div>
+            <div class="skill-panel__body">
+              <span class="tag">Vertex AI</span><span class="tag">GKE</span><span class="tag">EKS</span><span class="tag">Bedrock</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Helm</span><span class="tag">ArgoCD</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">WireGuard</span>
+            </div>
+          </div>
+          <div class="skill-panel">
+            <div class="skill-panel__head"><i class="fas fa-database"></i> Data</div>
+            <div class="skill-panel__body">
+              <span class="tag">PostgreSQL</span><span class="tag">PgBouncer</span><span class="tag">Redis</span><span class="tag">SQLAlchemy</span><span class="tag">Alembic</span><span class="tag">MinIO</span><span class="tag">GCS</span>
+            </div>
+          </div>
+          <div class="skill-panel">
+            <div class="skill-panel__head"><i class="fas fa-gauge-high"></i> Observability</div>
+            <div class="skill-panel__body">
+              <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">OpenTelemetry</span><span class="tag">Model drift</span>
+            </div>
+          </div>
+          <div class="skill-panel">
+            <div class="skill-panel__head"><i class="fas fa-shield-halved"></i> Security / Auth</div>
+            <div class="skill-panel__body">
+              <span class="tag">JWT</span><span class="tag">API keys</span><span class="tag">5-tier RBAC</span><span class="tag">OAuth2</span><span class="tag">Secrets mgmt</span>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service">
-        <h3>Observability</h3>
-        <p>Prometheus · Grafana · OpenTelemetry · real-time dashboards · model-drift detection</p>
+    </section>
+
+    <!-- WORK -->
+    <section id="work">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">05 · deployments</div>
+          <h2 class="section-title">Selected <span class="dim">systems</span></h2>
+          <p class="section-sub">AI / ML infrastructure projects, shipped to production.</p>
+        </div>
+        <div class="work-grid">
+          <div class="work-card">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/01</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
+            <div class="work-card__body">
+              <h3>ServeLLM — privacy-first OpenAI-compatible platform</h3>
+              <p>FastAPI + Next.js 15 + PgBouncer + MinIO + Ollama, SSE streaming at &lt;50ms TTFT, 5-tier RBAC.</p>
+              <div class="tag-row"><span class="tag">FastAPI</span><span class="tag">SSE</span><span class="tag">RBAC</span></div>
+            </div>
+          </div>
+          <div class="work-card">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/02</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
+            <div class="work-card__body">
+              <h3>Enterprise RAG Pipeline</h3>
+              <p>pgvector + Vertex AI retrieval architecture delivering a 40% accuracy lift on enterprise knowledge bases.</p>
+              <div class="tag-row"><span class="tag">pgvector</span><span class="tag">Vertex AI</span></div>
+            </div>
+          </div>
+          <div class="work-card">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/03</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
+            <div class="work-card__body">
+              <h3>AI/ML Observability Stack</h3>
+              <p>Prometheus, Grafana, and OpenTelemetry instrumentation across inference latency, token usage, and drift.</p>
+              <div class="tag-row"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">OTel</span></div>
+            </div>
+          </div>
+          <div class="work-card">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/04</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
+            <div class="work-card__body">
+              <h3>Vector Database Infrastructure</h3>
+              <p>10M+ document chunks, sub-second semantic search, tuned indexing and retrieval strategy.</p>
+              <div class="tag-row"><span class="tag">pgvector</span><span class="tag">Pinecone</span></div>
+            </div>
+          </div>
+          <div class="work-card" style="grid-column:1/-1;">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/05</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
+            <div class="work-card__body">
+              <h3>Hybrid-Cloud LLM Deployment</h3>
+              <p>AWS + GCP + on-prem GPU (Proxmox) linked via WireGuard, Terraform-provisioned, centrally observed.</p>
+              <div class="tag-row"><span class="tag">Terraform</span><span class="tag">WireGuard</span><span class="tag">Proxmox</span></div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="service">
-        <h3>Security &amp; Auth</h3>
-        <p>JWT · API-key management · 5-tier RBAC · middleware auth · OAuth2 · secrets management</p>
+    </section>
+
+    <!-- EDUCATION -->
+    <section id="education">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">06 · credentials</div>
+          <h2 class="section-title">Education &amp; <span class="dim">certifications</span></h2>
+        </div>
+        <div class="edu-grid">
+          <div class="edu-card">
+            <h3>Education</h3>
+            <p class="deg">BSc, Machine Learning &amp; Artificial Intelligence</p>
+            <p class="sch">Goldsmiths, University of London · 2023</p>
+          </div>
+          <div class="cert-card">
+            <h3>Certifications</h3>
+            <ul>
+              <li>Google IT Support Specialization</li>
+              <li>Google Data Analytics Specialization</li>
+              <li>Google Digital Product Management</li>
+            </ul>
+          </div>
+        </div>
       </div>
-    </div>
-  </section> <!-- /skills -->
+    </section>
 
-  <!-- My Work -->
-  <section class="my-work" id="work">
-    <h2 class="section__title section__title--work">My work</h2>
-    <p class="section__subtitle section__subtitle--work">Selected AI / ML infrastructure projects</p>
+    <!-- CONTACT / FOOTER -->
+    <section id="contact" class="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="eyebrow">07 · connect</div>
+          <h2 class="section-title">Let's <span class="dim">ship something</span></h2>
+        </div>
+        <a href="mailto:daudfarzand89@gmail.com" class="contact__email">daudfarzand89@gmail.com</a>
+        <p class="contact__meta">(92) 345-5137420 · Lahore, Pakistan</p>
+        <div class="social-row">
+          <a href="https://www.linkedin.com/in/daud-farzand-982743192/" aria-label="LinkedIn" target="_blank" rel="noopener"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://github.com/dfk007" aria-label="GitHub" target="_blank" rel="noopener"><i class="fab fa-github"></i></a>
+          <a href="https://www.instagram.com/twenty_second_savage/" aria-label="Instagram" target="_blank" rel="noopener"><i class="fab fa-instagram"></i></a>
+          <a href="./files/Daud_Farzand_Resume_2026_v2.pdf" aria-label="Resume" target="_blank"><i class="fas fa-file-arrow-down"></i></a>
+        </div>
+      </div>
+    </section>
 
-    <div class="portfolio">
-      <!-- Portfolio item: ServeLLM -->
-      <a class="portfolio__item" href="portfolio-item.html" title="ServeLLM — privacy-first OpenAI-compatible LLM platform">
-        <img alt="ServeLLM — privacy-first OpenAI-compatible LLM platform" class="portfolio__img" src="img/fightclub-thumb.png" />
-      </a>
+    <footer class="footer">
+      <div class="container">
+        <!-- <span class="accent">&gt;</span> build 2026.08 <span class="accent">·</span> made with vanilla HTML/CSS <span class="accent">·</span> no framework overhead -->
+      </div>
+    </footer>
 
-      <!-- Portfolio item: Enterprise RAG Pipeline -->
-      <a class="portfolio__item" href="portfolio-item02.html" title="Enterprise RAG Pipeline — pgvector + Vertex AI, 40% accuracy lift">
-        <img alt="Enterprise RAG Pipeline — pgvector + Vertex AI, 40% accuracy lift" class="portfolio__img" src="img/meanbabies-thumb.png" />
-      </a>
+  </main>
+</div>
 
-      <!-- Portfolio item: AI/ML Observability Stack -->
-      <a class="portfolio__item" href="portfolio-item03.html" title="AI/ML Observability Stack — Prometheus, Grafana, OpenTelemetry">
-        <img alt="AI/ML Observability Stack — Prometheus, Grafana, OpenTelemetry" class="portfolio__img" src="img/soltars-thumb.png" />
-      </a>
+<button class="totop" id="totop" aria-label="Back to top"><i class="fas fa-arrow-up"></i></button>
 
-      <!-- Portfolio item: Vector Database Infrastructure -->
-      <a class="portfolio__item" href="portfolio-item04.html" title="Vector Database Infrastructure — 10M+ chunks, sub-second queries">
-        <img alt="Vector Database Infrastructure — 10M+ chunks, sub-second queries" class="portfolio__img" src="img/zealous-benz-thumb.png" />
-      </a>
+<script>
+// Mobile nav toggle
+const menuBtn = document.getElementById('menuBtn');
+const menuIcon = document.getElementById('menuIcon');
+const mobileNav = document.getElementById('mobileNav');
 
-      <!-- Portfolio item: Hybrid-Cloud LLM Deployment -->
-      <a class="portfolio__item" href="portfolio-item05.html" title="Hybrid-Cloud LLM Deployment — AWS, GCP, on-prem GPU">
-        <img alt="Hybrid-Cloud LLM Deployment — AWS, GCP, on-prem GPU" class="portfolio__img" src="img/portfolio-05.jpg" />
-      </a>
+menuBtn.addEventListener('click', () => {
+  const isOpen = mobileNav.classList.toggle('open');
+  menuBtn.setAttribute('aria-expanded', isOpen);
+  menuIcon.className = isOpen ? 'fas fa-xmark' : 'fas fa-bars';
+});
 
-    </div>
-  </section> <!-- /my-work -->
+document.querySelectorAll('.mobile-nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    menuBtn.setAttribute('aria-expanded', false);
+    menuIcon.className = 'fas fa-bars';
+  });
+});
 
-  <!-- Education & Certifications -->
-  <section class="about-me" id="education">
-    <h2 class="section__title section__title--about">Education &amp; Certifications</h2>
-    <p class="section__subtitle section__subtitle--about">Academic background &amp; professional credentials</p>
+// Active section highlighting (rail + mobile nav)
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('.nav-link');
 
-    <div class="about-me__body">
-      <p><strong>Education</strong><br>
-        Bachelor's in Machine Learning &amp; Artificial Intelligence — Goldsmiths, University of London (2023)</p>
+const setActive = () => {
+  let current = sections[0]?.id;
+  const scrollPos = window.scrollY + 140;
+  sections.forEach(sec => {
+    if (scrollPos >= sec.offsetTop) current = sec.id;
+  });
+  navLinks.forEach(link => {
+    link.classList.toggle('active', link.getAttribute('href') === '#' + current);
+  });
+};
+window.addEventListener('scroll', setActive, { passive: true });
+setActive();
 
-      <p><strong>Certifications</strong></p>
-      <ul>
-        <li>Google IT Support Specialization</li>
-        <li>Google Data Analytics Specialization</li>
-        <li>Google Digital Product Management</li>
-      </ul>
-    </div>
-  </section> <!-- /education -->
+// Back to top
+const totop = document.getElementById('totop');
+window.addEventListener('scroll', () => {
+  totop.classList.toggle('show', window.scrollY > 600);
+}, { passive: true });
+totop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+</script>
 
-  <!-- Footer -->
-  <footer class="footer">
-    <a class="footer__link" href="mailto:daudfarzand89@gmail.com">daudfarzand89@gmail.com</a>
-    <p style="margin-top:.25em; opacity:.8;">(92) 345-5137420 · Lahore, Pakistan</p>
-    <ul class="social-list">
-      <li class="social-list__item"><a class="social-list__link"
-          href="https://www.linkedin.com/in/daud-farzand-982743192/"><i class="fab fa-linkedin"></i></a></li>
-      <li class="social-list__item"><a class="social-list__link" href="https://github.com/dfk007"><i
-            class="fab fa-github"></i></a></li>
-      <li class="social-list__item"><a class="social-list__link"
-          href="https://www.instagram.com/twenty_second_savage/"><i class="fab fa-instagram"></i></a></li>
-      <li class="social-list__item"><a class="social-list__link"
-          href="./files/Daud_Farzand_Resume_2026_v2.pdf" target="_blank">Resume</a></li>
-    </ul>
-  </footer>
-
-  <script src="js/index.js"></script>
-
-  <!-- 100% privacy-first analytics -->
-  <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-  <noscript><img alt="" referrerpolicy="no-referrer-when-downgrade"
-      src="https://queue.simpleanalyticscdn.com/noscript.gif" /></noscript>
-
-  <script charset="utf-8" src="https://s.pageclip.co/v1/pageclip.js"></script>
 </body>
-
 </html>
