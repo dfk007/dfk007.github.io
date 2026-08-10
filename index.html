@@ -16,13 +16,9 @@
 
   <link href="css/style.css" rel="stylesheet">
   <link href="https://s.pageclip.co/v1/pageclip.css" media="screen" rel="stylesheet">
-  <script src="/js/dark.js" type="module"></script>
 </head>
 
 <body>
-<!--    dark-mode-toggle-->
-<dark-mode-toggle></dark-mode-toggle>
-<!--    -->
   <header>
 
 
@@ -39,11 +35,11 @@
     <nav class="nav">
       <ul class="nav__list">
         <li class="nav__item"><a class="nav__link" href="#home">Home</a></li>
-        <li class="nav__item"><a class="nav__link" href="#services">My Services</a></li>
-        <li class="nav__item"><a class="nav__link" href="#about">About me</a></li>
+        <li class="nav__item"><a class="nav__link" href="#services">Services</a></li>
+        <li class="nav__item"><a class="nav__link" href="#about">Experience</a></li>
+        <li class="nav__item"><a class="nav__link" href="#skills">Skills</a></li>
         <li class="nav__item"><a class="nav__link" href="#work">My Work</a></li>
-        <li class="nav__item"><a class="nav__link" href="portfolio-item06.html">Linux-Python-Resources</a></li>
-        <li class="nav__item"><a class="nav__link" href="sql.html">data sysadmin</a></li>
+        <li class="nav__item"><a class="nav__link" href="#education">Education</a></li>
       </ul>
     </nav>
   </header>
@@ -53,7 +49,7 @@
     <h1 class="section__title section__title--intro">
       Hi, I am <strong>Daud Farzand</strong>
     </h1>
-    <p class="section__subtitle section__subtitle--intro">DEVOPS ENGINEER | SYS-ADMIN</p>
+    <p class="section__subtitle section__subtitle--intro">AI PLATFORM ENGINEER | RAG & LLM INFRASTRUCTURE SPECIALIST | MLOPS</p>
     <img alt="a picture of Daud Farzand smiling" class="intro__img" src="img/pp.jfif" />
   </section>
 
@@ -62,32 +58,20 @@
     <h2 class="section__title section__title--services">What I do</h2>
     <div class="services">
       <div class="service">
-        <h3>Python Development</h3>
-        <p>
-          <!-- I provide customized development services covering MERN stack, WordPress Theme Customization, and API
-          integration to suit your specific requirements. -->
-          I streamline operations, automate performance monitoring, and configure network services using Python. I also manage user accounts, automate backups, and set up custom configurations tailored to specific administrative needs.
-        </p>
+        <h3>RAG &amp; LLM Infrastructure</h3>
+        <p>I build production RAG pipelines with the Model Context Protocol (MCP), manage vector databases (pgvector, Pinecone, Weaviate, Chroma), and serve LLMs through OpenAI-compatible APIs with token tracking and per-tenant analytics.</p>
       </div>
       <!-- /service -->
 
       <div class="service">
-        <h3>Linux System Administration</h3>
-<!--        <p>Proficient in debugging, encryption algorithms and techniques, customer service, networking programming and-->
-<!--          protocols and cloud computing.</p>-->
-<!--        <p>Skilled in debugging, encryption algorithms, customer service, networking programming, protocols, and cloud computing.</p>-->
-        <p>I’m passionate about optimizing infrastructure for seamless operations. With expertise in deploying and managing RHEL/CentOS/Ubuntu servers, I configure DHCP, VPN, VoIP, and more. Proficient in Python and Bash scripting, I automate tasks to ensure efficiency and reliability.</p>
+        <h3>AI Platform &amp; MLOps</h3>
+        <p>I architect multi-tenant SaaS for AI workloads on FastAPI and Next.js 15, deploy inference on Vertex AI and AWS Bedrock, and ship ML models through GitHub Actions, GitLab CI/CD, Terraform, and ArgoCD.</p>
       </div>
       <!-- /service -->
 
       <div class="service">
-        <h3>DevOps Consultation</h3>
-<!--        <p>As a technical consultant, I help clients through the complex journey of software project initiation and-->
-<!--          execution.My primary responsibilities entails evaluating the right technical architecture for your needs, and-->
-<!--          handpicking technologies for peak performance and scalability.<br>I play a vital role in DevOps practices and-->
-<!--          deployment strategies, ensuring smooth transitions from development to production environments and fine-tuning-->
-<!--          the deployment pipeline for peak efficiency and unwavering reliability.</p>-->
-          <p>I specialize in automating deployments, managing cloud infrastructure, and optimizing system performance using tools like Docker, Kubernetes, and Ansible. My experience includes full-stack application deployment, system monitoring with Grafana, and implementing robust backup and recovery strategies.</p>
+        <h3>Observability &amp; Cloud Infra</h3>
+        <p>I run Docker, Kubernetes, and Helm on hybrid cloud (AWS, GCP, on-prem GPU), instrument AI/ML workloads with Prometheus, Grafana, and OpenTelemetry, and tune inference cost, latency, and uptime.</p>
       </div>
       <!-- /service -->
     </div> <!-- /services -->
@@ -98,83 +82,119 @@
   <!-- About Me -->
   <section class="about-me" id="about">
     <h2 class="section__title section__title--about">Who I am</h2>
-    <p class="section__subtitle section__subtitle--about">Sys-Admin | DevOps professional based in Pakistan</p>
+    <p class="section__subtitle section__subtitle--about">AI Platform Engineer based in Lahore, Pakistan</p>
 
     <div class="about-me__body">
-      <p>I am a DevOps Engineer and Linux System Administrator with a passion for streamlining infrastructure and enabling seamless software delivery. I specialize in deploying and managing cloud-native environments, automating CI/CD pipelines, and optimizing system performance using tools like Docker, Kubernetes, Ansible, and Terraform. My expertise extends to monitoring with Grafana and Prometheus, as well as implementing robust security, backup, and disaster recovery solutions.</p>
+      <p>AI Platform Infrastructure Engineer specializing in RAG pipelines, Model Context Protocol (MCP), and LLM serving on Google Cloud (Vertex AI) and AWS. Expert in vector database management, containerized model serving, token tracking, and multi-tenant SaaS delivery of AI services — built for enterprise-grade observability and cost optimization.</p>
 
-      <p>Driven by a commitment to excellence, I continuously refine processes to ensure reliability, scalability, and efficiency across all systems.</p>
+      <p><strong>Tech Prysm</strong> — AI Platform Infrastructure Engineer <em>(Oct 2025 – Present)</em><br>
+        Production RAG pipelines with 40% accuracy lift, MCP infrastructure, Vertex AI workloads at 99.9% uptime, CI/CD for ML models, observability stack, vector DB infra for 10M+ chunks, 35% LLM cost reduction.</p>
 
+      <p><strong>Techanzy Limited</strong> — AI Platform Engineer | RAG &amp; LLM Infrastructure | MLOps <em>(May 2024 – Sept 2025)</em><br>
+        Architected <em>ServeLLM</em>, a privacy-first OpenAI-compatible LLM platform with SSE streaming (&lt;50ms TTFT), token tracking &amp; billing, hybrid-cloud inference (AWS + GCP + on-prem GPU), 5-tier RBAC, and &lt;1.5GB memory footprint per service.</p>
 
+      <p><strong>Programmer's Force Pvt Ltd</strong> — DevOps Engineer <em>(Jan 2023 – Mar 2024)</em><br>
+        Containerized apps with Docker, built GitLab CI/CD, automated config with Ansible, deployed Grafana/Prometheus monitoring, wrote backup/recovery playbooks, and hardened Kubernetes with RBAC and security policies.</p>
+
+      <p><strong>Unmatched Resumes LLC</strong> — Technology Director (Lead Engineer – Program Management) <em>(Mar 2022 – Dec 2022)</em><br>
+        Led a WordPress web platform (30% engagement lift), managed release pipeline and product backlog, drove engineering capacity planning.</p>
     </div>
 
-    <img alt="Jane leaning against a bus" class="about-me__img" src="img/developer.jfif">
+    <img alt="Daud Farzand" class="about-me__img" src="img/developer.jfif">
   </section> <!-- /about-me -->
+
+  <!-- Technical Skills -->
+  <section class="my-services" id="skills" style="background-image:none;">
+    <h2 class="section__title section__title--services">Technical Skills</h2>
+    <div class="services">
+      <div class="service">
+        <h3>AI / ML</h3>
+        <p>RAG pipelines · Model Context Protocol (MCP) · Vertex AI · Ollama · OpenAI API · LangChain · tiktoken · Embedding models</p>
+        <p>Vector DBs: pgvector · Pinecone · Weaviate · Chroma</p>
+      </div>
+      <div class="service">
+        <h3>Backend &amp; Frontend</h3>
+        <p>FastAPI · Python 3.11+ · REST · SSE streaming · gRPC · microservices</p>
+        <p>Next.js 15 · React 19 · TypeScript · Tailwind CSS · SSR</p>
+      </div>
+      <div class="service">
+        <h3>Cloud &amp; DevOps</h3>
+        <p>GCP: Vertex AI · Cloud Run · GKE · BigQuery</p>
+        <p>AWS: EC2 · EKS · S3 · Lambda · Bedrock</p>
+        <p>Docker · Kubernetes · Helm · ArgoCD · Terraform · Ansible · WireGuard</p>
+      </div>
+      <div class="service">
+        <h3>Data</h3>
+        <p>PostgreSQL · pgvector · PgBouncer · Redis · SQLAlchemy · Alembic</p>
+        <p>MinIO (S3-compatible) · Google Cloud Storage</p>
+      </div>
+      <div class="service">
+        <h3>Observability</h3>
+        <p>Prometheus · Grafana · OpenTelemetry · real-time dashboards · model-drift detection</p>
+      </div>
+      <div class="service">
+        <h3>Security &amp; Auth</h3>
+        <p>JWT · API-key management · 5-tier RBAC · middleware auth · OAuth2 · secrets management</p>
+      </div>
+    </div>
+  </section> <!-- /skills -->
 
   <!-- My Work -->
   <section class="my-work" id="work">
     <h2 class="section__title section__title--work">My work</h2>
-    <p class="section__subtitle section__subtitle--work">A selection of my range of work</p>
+    <p class="section__subtitle section__subtitle--work">Selected AI / ML infrastructure projects</p>
 
     <div class="portfolio">
-      <!-- Portfolio item 01 -->
-      <a class="portfolio__item" href="portfolio-item.html">
-        <img alt="" class="portfolio__img" src="img/fightclub-thumb.png" />
+      <!-- Portfolio item: ServeLLM -->
+      <a class="portfolio__item" href="portfolio-item.html" title="ServeLLM — privacy-first OpenAI-compatible LLM platform">
+        <img alt="ServeLLM — privacy-first OpenAI-compatible LLM platform" class="portfolio__img" src="img/fightclub-thumb.png" />
       </a>
 
-      <!-- Portfolio item 02 -->
-      <a class="portfolio__item" href="portfolio-item02.html">
-        <img alt="" class="portfolio__img" src="img/meanbabies-thumb.png" />
+      <!-- Portfolio item: Enterprise RAG Pipeline -->
+      <a class="portfolio__item" href="portfolio-item02.html" title="Enterprise RAG Pipeline — pgvector + Vertex AI, 40% accuracy lift">
+        <img alt="Enterprise RAG Pipeline — pgvector + Vertex AI, 40% accuracy lift" class="portfolio__img" src="img/meanbabies-thumb.png" />
       </a>
 
-      <!-- Portfolio item 03 -->
-      <a class="portfolio__item" href="portfolio-item03.html">
-        <img alt="" class="portfolio__img" src="img/soltars-thumb.png" />
+      <!-- Portfolio item: AI/ML Observability Stack -->
+      <a class="portfolio__item" href="portfolio-item03.html" title="AI/ML Observability Stack — Prometheus, Grafana, OpenTelemetry">
+        <img alt="AI/ML Observability Stack — Prometheus, Grafana, OpenTelemetry" class="portfolio__img" src="img/soltars-thumb.png" />
       </a>
 
-      <!-- Portfolio item 04 -->
-      <a class="portfolio__item" href="portfolio-item04.html">
-        <img alt="" class="portfolio__img" src="img/zealous-benz-thumb.png" />
+      <!-- Portfolio item: Vector Database Infrastructure -->
+      <a class="portfolio__item" href="portfolio-item04.html" title="Vector Database Infrastructure — 10M+ chunks, sub-second queries">
+        <img alt="Vector Database Infrastructure — 10M+ chunks, sub-second queries" class="portfolio__img" src="img/zealous-benz-thumb.png" />
       </a>
 
-      <!-- Portfolio item 05 -->
-      <a class="portfolio__item" href="portfolio-item05.html">
-        <img alt="" class="portfolio__img" src="img/portfolio-05.jpg" />
+      <!-- Portfolio item: Hybrid-Cloud LLM Deployment -->
+      <a class="portfolio__item" href="portfolio-item05.html" title="Hybrid-Cloud LLM Deployment — AWS, GCP, on-prem GPU">
+        <img alt="Hybrid-Cloud LLM Deployment — AWS, GCP, on-prem GPU" class="portfolio__img" src="img/portfolio-05.jpg" />
       </a>
-
-      <!-- Portfolio item 06 -->
-      <a class="portfolio__item" href="portfolio-item06.html">
-        <img alt="" class="portfolio__img" src="img/portfolio-06.jpg" />
-      </a>
-
-      <!-- Portfolio item 07 -->
-      <a class="portfolio__item" href="portfolio-item07.html">
-        <img alt="" class="portfolio__img" src="img/portfolio-07.jpg" />
-      </a>
-
-      <!-- Portfolio item 08 -->
-      <a class="portfolio__item" href="tech-for-2024.html">
-        <img alt="" class="portfolio__img" src="img/portfolio-08.jpg" />
-      </a>
-
-<!--      &lt;!&ndash; Portfolio item 09 &ndash;&gt;-->
-<!--      <a class="portfolio__item" href="portfolio-item.html">-->
-<!--        <img alt="" class="portfolio__img" src="img/portfolio-09.jpg" />-->
-<!--      </a>-->
-
-<!--      &lt;!&ndash; Portfolio item 10 &ndash;&gt;-->
-<!--      <a class="portfolio__item" href="portfolio-item.html">-->
-<!--        <img alt="" class="portfolio__img" src="img/portfolio-10.jpg" />-->
-<!--      </a>-->
-
 
     </div>
   </section> <!-- /my-work -->
 
+  <!-- Education & Certifications -->
+  <section class="about-me" id="education">
+    <h2 class="section__title section__title--about">Education &amp; Certifications</h2>
+    <p class="section__subtitle section__subtitle--about">Academic background &amp; professional credentials</p>
+
+    <div class="about-me__body">
+      <p><strong>Education</strong><br>
+        Bachelor's in Machine Learning &amp; Artificial Intelligence — Goldsmiths, University of London (2023)</p>
+
+      <p><strong>Certifications</strong></p>
+      <ul>
+        <li>Google IT Support Specialization</li>
+        <li>Google Data Analytics Specialization</li>
+        <li>Google Digital Product Management</li>
+      </ul>
+    </div>
+  </section> <!-- /education -->
+
   <!-- Footer -->
   <footer class="footer">
-    <!-- replace with your own info -->
     <a class="footer__link" href="mailto:daudfarzand89@gmail.com">daudfarzand89@gmail.com</a>
+    <p style="margin-top:.25em; opacity:.8;">(92) 345-5137420 · Lahore, Pakistan</p>
     <ul class="social-list">
       <li class="social-list__item"><a class="social-list__link"
           href="https://www.linkedin.com/in/daud-farzand-982743192/"><i class="fab fa-linkedin"></i></a></li>
@@ -182,12 +202,8 @@
             class="fab fa-github"></i></a></li>
       <li class="social-list__item"><a class="social-list__link"
           href="https://www.instagram.com/twenty_second_savage/"><i class="fab fa-instagram"></i></a></li>
-      <!-- <li class="social-list__item"><a
-          class="social-list__link" href="https://drive.google.com/file/d/19l5vrwHuv5xEijrIfJTuLTbiI7fW-clB/view?usp=sharing"
-          target="_blank">resume</a></li> -->
-          <li class="social-list__item"><a
-            class="social-list__link" href="./files/Daud_Farzand_Resume_2026_v2.pdf"
-            target="_blank">My-Resume</a></li>
+      <li class="social-list__item"><a class="social-list__link"
+          href="./files/Daud_Farzand_Resume_2026_v2.pdf" target="_blank">Resume</a></li>
     </ul>
   </footer>
 
