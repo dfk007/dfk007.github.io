@@ -8,29 +8,29 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 <style>
 /* ============================================================
-   TOKENS — Paper OS
+   TOKENS
    ============================================================ */
 :root{
-  --ink:#20211f;
-  --muted:#6f746e;
-  --paper:#f4f4ef;
-  --card:#fff;
-  --line:#dedfd7;
-  --lime:#d9f27c;
-  --blue:#c9e9f5;
-  --peach:#ffd8c8;
-  --lav:#e4d8f8;
-  --yellow:#ffe59a;
-  --green:#3f7a5a;
-  --rust:#a25540;
-  --shadow:0 12px 34px #20211f0d;
-  --r:20px;
+  --bg:#0B0E14;
+  --panel:#111623;
+  --panel-2:#161C2C;
+  --border:#232A3D;
+  --text:#E8EAED;
+  --text-dim:#8B93A7;
+  --text-faint:#545D74;
+  --signal:#5EEAD4;
+  --signal-dim:#5EEAD422;
+  --warn:#F59E0B;
+  --danger:#F87171;
+  --font-mono:'JetBrains Mono',ui-monospace,'SF Mono',Menlo,monospace;
+  --font-sans:'Inter',system-ui,-apple-system,sans-serif;
   --rail-w:220px;
+  --radius:3px;
   --maxw:1180px;
 }
 
@@ -38,41 +38,45 @@
 html{scroll-behavior:smooth;}
 @media (prefers-reduced-motion: reduce){
   html{scroll-behavior:auto;}
-  *,*::before,*::after{transition:none !important;}
+  *,*::before,*::after{animation-duration:.001ms !important;animation-iteration-count:1 !important;transition-duration:.001ms !important;}
 }
 
 body{
-  background:var(--paper);
-  color:var(--ink);
-  font:15px/1.6 'DM Sans',system-ui,-apple-system,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-family:var(--font-sans);
+  font-size:16px;
+  line-height:1.6;
   -webkit-font-smoothing:antialiased;
+  background-image:
+    radial-gradient(circle at 15% 8%, #5EEAD40d 0%, transparent 40%),
+    radial-gradient(circle at 85% 92%, #5EEAD408 0%, transparent 45%);
 }
 
 a{color:inherit;text-decoration:none;}
 img{max-width:100%;display:block;}
 ul{list-style:none;}
 
-::selection{background:var(--lime);color:var(--ink);}
+::selection{background:var(--signal);color:#0B0E14;}
 
 :focus-visible{
-  outline:2px solid var(--ink);
+  outline:2px solid var(--signal);
   outline-offset:3px;
-  border-radius:4px;
+  border-radius:2px;
 }
 
 ::-webkit-scrollbar{width:10px;}
-::-webkit-scrollbar-track{background:var(--paper);}
-::-webkit-scrollbar-thumb{background:var(--line);border-radius:5px;}
-::-webkit-scrollbar-thumb:hover{background:var(--muted);}
+::-webkit-scrollbar-track{background:var(--bg);}
+::-webkit-scrollbar-thumb{background:var(--border);border-radius:5px;}
+::-webkit-scrollbar-thumb:hover{background:var(--text-faint);}
 
-h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.1;letter-spacing:-.03em;}
-
+.mono{font-family:var(--font-mono);}
 .eyebrow{
-  font-size:12px;
+  font-family:var(--font-mono);
+  font-size:.72rem;
   letter-spacing:.14em;
   text-transform:uppercase;
-  color:var(--green);
-  font-weight:700;
+  color:var(--signal);
   display:flex;
   align-items:center;
   gap:.6em;
@@ -81,29 +85,31 @@ h1,h2,h3{font-family:'Space Grotesk',sans-serif;font-weight:700;line-height:1.1;
 .eyebrow::before{
   content:'';
   width:6px;height:6px;
-  background:var(--green);
+  background:var(--signal);
   border-radius:50%;
+  box-shadow:0 0 8px var(--signal);
   flex-shrink:0;
 }
 
 .container{max-width:var(--maxw);margin:0 auto;padding:0 clamp(1.25rem,4vw,2.5rem);}
 
+h1,h2,h3{font-family:var(--font-mono);font-weight:700;line-height:1.15;letter-spacing:-.01em;}
+
 .section-head{margin-bottom:clamp(2rem,5vw,3.25rem);}
 .section-title{
-  font-size:clamp(1.7rem,3.6vw,2.5rem);
-  letter-spacing:-.04em;
-  color:var(--ink);
+  font-size:clamp(1.6rem,3.6vw,2.4rem);
+  color:var(--text);
 }
-.section-title .dim{color:var(--muted);}
+.section-title .dim{color:var(--text-faint);}
 .section-sub{
-  font-family:'DM Sans',sans-serif;
-  color:var(--muted);
+  font-family:var(--font-sans);
+  color:var(--text-dim);
   margin-top:.6rem;
   max-width:60ch;
   font-size:1rem;
 }
 
-section{padding:clamp(3.5rem,8vw,6rem) 0;border-bottom:1px solid var(--line);}
+section{padding:clamp(3.5rem,8vw,6rem) 0;border-bottom:1px solid var(--border);}
 section:last-of-type{border-bottom:none;}
 
 /* ============================================================
@@ -116,36 +122,33 @@ section:last-of-type{border-bottom:none;}
   flex-shrink:0;
   position:fixed;
   top:0;left:0;bottom:0;
-  border-right:1px solid var(--line);
-  background:var(--card);
+  border-right:1px solid var(--border);
+  background:var(--panel);
   display:flex;
   flex-direction:column;
   z-index:100;
 }
 .rail__brand{
   padding:1.5rem 1.25rem;
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--border);
 }
 .rail__brand a{
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:700;
+  font-family:var(--font-mono);
+  font-weight:800;
   font-size:1.05rem;
   display:flex;
   align-items:center;
   gap:.5rem;
-  letter-spacing:-.02em;
 }
-.rail__brand .dot{
-  display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--green);
-}
+.rail__brand .caret{color:var(--signal);}
 .rail__brand small{
   display:block;
-  font-family:'DM Sans',sans-serif;
-  font-weight:500;
-  color:var(--muted);
+  font-family:var(--font-sans);
+  font-weight:400;
+  color:var(--text-faint);
   font-size:.72rem;
-  margin-top:.4rem;
-  letter-spacing:.01em;
+  margin-top:.35rem;
+  letter-spacing:.02em;
 }
 
 .rail__nav{flex:1;padding:1.25rem .75rem;}
@@ -154,63 +157,60 @@ section:last-of-type{border-bottom:none;}
   align-items:center;
   gap:.65rem;
   padding:.6rem .75rem;
-  border-radius:9px;
-  font-family:'DM Sans',sans-serif;
-  font-weight:500;
-  font-size:.85rem;
-  color:var(--muted);
+  border-radius:var(--radius);
+  font-family:var(--font-mono);
+  font-size:.82rem;
+  color:var(--text-dim);
   transition:background .15s, color .15s;
   margin-bottom:.15rem;
 }
-.rail__nav a .idx{font-family:'Space Grotesk',sans-serif;color:var(--muted);font-size:.72rem;opacity:.7;}
+.rail__nav a .idx{color:var(--text-faint);font-size:.72rem;}
 .rail__nav a:hover, .rail__nav a.active{
-  background:var(--lime);
-  color:var(--ink);
+  background:var(--signal-dim);
+  color:var(--signal);
 }
-.rail__nav a.active .idx{color:var(--ink);opacity:1;}
+.rail__nav a.active .idx{color:var(--signal);}
 
 .rail__foot{
   padding:1.25rem;
-  border-top:1px solid var(--line);
+  border-top:1px solid var(--border);
+  font-family:var(--font-mono);
   font-size:.72rem;
-  color:var(--muted);
+  color:var(--text-faint);
 }
-.rail__foot .uptime-row{display:flex;justify-content:space-between;margin-bottom:.4rem;font-weight:500;}
-.rail__foot .uptime-val{color:var(--green);font-weight:700;}
+.rail__foot .uptime-row{display:flex;justify-content:space-between;margin-bottom:.3rem;}
+.rail__foot .uptime-val{color:var(--signal);}
 
 /* Mobile top bar */
 .topbar{
   display:none;
   position:fixed;top:0;left:0;right:0;
-  height:64px;
-  background:#f4f4efe6;
-  backdrop-filter:blur(8px);
-  border-bottom:1px solid var(--line);
+  height:60px;
+  background:rgba(11,14,20,.92);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid var(--border);
   z-index:200;
   align-items:center;
   justify-content:space-between;
   padding:0 1.1rem;
 }
-.topbar__brand{
-  font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1rem;
-  display:flex;align-items:center;gap:.5rem;letter-spacing:-.02em;
-}
-.topbar__brand .dot{display:inline-block;width:10px;height:10px;border-radius:50%;background:var(--green);}
+.topbar__brand{font-family:var(--font-mono);font-weight:800;font-size:1rem;display:flex;align-items:center;gap:.4rem;}
+.topbar__brand .caret{color:var(--signal);}
 .menu-btn{
   width:38px;height:38px;
-  border:1px solid var(--line);
-  background:var(--card);
-  border-radius:10px;
+  border:1px solid var(--border);
+  background:var(--panel);
+  border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
-  color:var(--ink);
+  color:var(--text);
   font-size:1.1rem;
   cursor:pointer;
 }
 
 .mobile-nav{
   display:none;
-  position:fixed;top:64px;left:0;right:0;bottom:0;
-  background:var(--paper);
+  position:fixed;top:60px;left:0;right:0;bottom:0;
+  background:var(--bg);
   z-index:199;
   padding:1.5rem;
   overflow-y:auto;
@@ -219,22 +219,20 @@ section:last-of-type{border-bottom:none;}
 .mobile-nav a{
   display:flex;align-items:center;gap:.75rem;
   padding:1rem .5rem;
-  border-bottom:1px solid var(--line);
-  font-family:'DM Sans',sans-serif;
-  font-weight:500;
+  border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);
   font-size:1rem;
-  color:var(--muted);
+  color:var(--text-dim);
 }
-.mobile-nav a .idx{font-family:'Space Grotesk',sans-serif;color:var(--muted);font-size:.8rem;}
-.mobile-nav a.active{color:var(--ink);font-weight:700;}
-.mobile-nav a.active .idx{color:var(--green);}
+.mobile-nav a .idx{color:var(--text-faint);font-size:.8rem;}
+.mobile-nav a.active{color:var(--signal);}
 
 .main{flex:1;margin-left:var(--rail-w);min-width:0;}
 
 @media (max-width:900px){
   .rail{display:none;}
   .topbar{display:flex;}
-  .main{margin-left:0;padding-top:64px;}
+  .main{margin-left:0;padding-top:60px;}
 }
 
 /* ============================================================
@@ -242,7 +240,7 @@ section:last-of-type{border-bottom:none;}
    ============================================================ */
 .hero{
   padding:clamp(3rem,9vw,6rem) 0 clamp(2.5rem,6vw,4rem);
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--border);
 }
 .hero__grid{
   display:grid;
@@ -256,28 +254,21 @@ section:last-of-type{border-bottom:none;}
 }
 
 .hero__name{
-  font-size:clamp(2.4rem,6vw,4rem);
-  line-height:1.02;
-  letter-spacing:-.05em;
+  font-size:clamp(2.2rem,6vw,3.6rem);
+  line-height:1.05;
   margin-bottom:1rem;
 }
-.hero__name .accent{
-  color:var(--ink);
-  background:var(--lime);
-  padding:0 .12em;
-  border-radius:8px;
-}
+.hero__name .accent{color:var(--signal);}
 .hero__role{
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:600;
-  color:var(--muted);
-  font-size:clamp(.95rem,2vw,1.1rem);
+  font-family:var(--font-mono);
+  color:var(--text-dim);
+  font-size:clamp(.95rem,2vw,1.15rem);
   margin-bottom:1.5rem;
-  letter-spacing:-.01em;
+  letter-spacing:.01em;
 }
-.hero__role .sep{color:var(--line);margin:0 .5em;}
+.hero__role .sep{color:var(--text-faint);margin:0 .5em;}
 .hero__desc{
-  color:var(--muted);
+  color:var(--text-dim);
   max-width:56ch;
   font-size:1.02rem;
   margin-bottom:2rem;
@@ -285,86 +276,103 @@ section:last-of-type{border-bottom:none;}
 
 .hero__ctas{display:flex;gap:.9rem;flex-wrap:wrap;}
 .btn{
-  font-family:'DM Sans',sans-serif;
+  font-family:var(--font-mono);
   font-size:.85rem;
-  font-weight:700;
+  font-weight:500;
   padding:.85rem 1.4rem;
-  border-radius:10px;
-  border:1px solid var(--line);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
   display:inline-flex;
   align-items:center;
   gap:.55rem;
-  transition:transform .15s, border-color .15s, background .15s;
+  transition:border-color .15s, background .15s, transform .15s;
   cursor:pointer;
 }
 .btn--primary{
-  background:var(--ink);
-  color:#fff;
-  border-color:var(--ink);
+  background:var(--signal);
+  color:#08121A;
+  border-color:var(--signal);
+  font-weight:700;
 }
-.btn--primary:hover{transform:translateY(-2px);}
-.btn--ghost{color:var(--ink);background:var(--card);}
-.btn--ghost:hover{border-color:var(--ink);transform:translateY(-2px);}
+.btn--primary:hover{transform:translateY(-2px);box-shadow:0 6px 24px -6px #5EEAD466;}
+.btn--ghost{color:var(--text);background:var(--panel);}
+.btn--ghost:hover{border-color:var(--signal);color:var(--signal);}
 
 .hero__portrait{
   aspect-ratio:1;
-  border-radius:var(--r);
-  border:1px solid var(--line);
-  background:var(--card);
-  box-shadow:var(--shadow);
+  border-radius:var(--radius);
+  border:1px solid var(--border);
+  background:var(--panel);
   overflow:hidden;
   position:relative;
 }
 .hero__portrait img{width:100%;height:100%;object-fit:cover;}
+.hero__portrait .scanline{
+  position:absolute;inset:0;
+  background:linear-gradient(180deg, transparent 0%, #5EEAD411 50%, transparent 100%);
+  pointer-events:none;
+}
+.hero__portrait-frame{
+  position:absolute;top:.6rem;left:.6rem;right:.6rem;
+  display:flex;justify-content:space-between;
+  font-family:var(--font-mono);font-size:.65rem;
+  color:var(--signal);
+  opacity:.85;
+}
 
 /* --- Signature element: service status strip --- */
 .statusbar{
   margin-top:clamp(2.5rem,5vw,3.5rem);
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  background:var(--card);
-  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--panel);
   overflow:hidden;
 }
 .statusbar__head{
-  padding:.8rem 1.2rem;
-  border-bottom:1px solid var(--line);
+  padding:.7rem 1rem;
+  border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);
   font-size:.72rem;
-  font-weight:700;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-  color:var(--muted);
+  color:var(--text-faint);
   display:flex;
   align-items:center;
   gap:.5rem;
 }
 .statusbar__head .dots{display:flex;gap:.35rem;margin-right:.4rem;}
-.statusbar__head .dots span{width:7px;height:7px;border-radius:50%;background:var(--line);}
+.statusbar__head .dots span{width:7px;height:7px;border-radius:50%;background:var(--border);}
 .statusbar__list{display:flex;flex-direction:column;}
 .statusbar__row{
   display:grid;
   grid-template-columns:auto 1fr auto auto;
   gap:1rem;
   align-items:center;
-  padding:.9rem 1.2rem;
-  border-bottom:1px solid var(--line);
-  font-size:.85rem;
+  padding:.85rem 1rem;
+  border-bottom:1px solid var(--border);
+  font-family:var(--font-mono);
+  font-size:.8rem;
 }
 .statusbar__row:last-child{border-bottom:none;}
 .statusbar__row .pulse{
   width:8px;height:8px;border-radius:50%;
-  background:var(--green);
+  background:var(--signal);
+  box-shadow:0 0 0 0 #5EEAD466;
+  animation:pulse 2.2s infinite;
   flex-shrink:0;
 }
-.statusbar__row .svc-name{color:var(--ink);font-weight:700;font-family:'Space Grotesk',sans-serif;}
-.statusbar__row .svc-meta{color:var(--muted);display:none;}
-.statusbar__row .svc-metric{color:var(--green);font-weight:700;text-align:right;white-space:nowrap;}
+@keyframes pulse{
+  0%{box-shadow:0 0 0 0 #5EEAD466;}
+  70%{box-shadow:0 0 0 7px #5EEAD400;}
+  100%{box-shadow:0 0 0 0 #5EEAD400;}
+}
+.statusbar__row .svc-name{color:var(--text);font-weight:500;}
+.statusbar__row .svc-meta{color:var(--text-faint);display:none;}
+.statusbar__row .svc-metric{color:var(--signal);text-align:right;white-space:nowrap;}
 @media (min-width:640px){
   .statusbar__row{grid-template-columns:auto 1fr auto auto auto;}
   .statusbar__row .svc-meta{display:block;}
 }
 @media (max-width:480px){
-  .statusbar__row{grid-template-columns:auto 1fr auto;font-size:.78rem;}
+  .statusbar__row{grid-template-columns:auto 1fr auto;font-size:.72rem;}
   .statusbar__row .svc-metric:last-child{display:none;}
 }
 
@@ -380,38 +388,35 @@ section:last-of-type{border-bottom:none;}
 @media (max-width:640px){.services-grid{grid-template-columns:1fr;}}
 
 .svc-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  box-shadow:var(--shadow);
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
   padding:1.75rem;
-  transition:transform .2s;
+  transition:border-color .2s, transform .2s;
   position:relative;
 }
-.svc-card:hover{transform:translateY(-3px);}
+.svc-card:hover{border-color:#5EEAD455;transform:translateY(-3px);}
 .svc-card__icon{
-  width:44px;height:44px;
-  border-radius:12px;
+  width:42px;height:42px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
-  color:var(--ink);
+  color:var(--signal);
   font-size:1.1rem;
   margin-bottom:1.25rem;
-  background:var(--lime);
+  background:var(--signal-dim);
 }
-.svc-card h3{font-size:1.1rem;margin-bottom:.7rem;color:var(--ink);letter-spacing:-.02em;}
-.svc-card p{color:var(--muted);font-size:.9rem;line-height:1.65;}
+.svc-card h3{font-size:1.05rem;margin-bottom:.7rem;color:var(--text);}
+.svc-card p{color:var(--text-dim);font-size:.9rem;line-height:1.65;}
 .svc-card .tag-row{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:1rem;}
 .tag{
-  font-family:'DM Sans',sans-serif;
-  font-weight:600;
-  font-size:.72rem;
-  padding:.3rem .6rem;
-  border-radius:7px;
-  background:#eef0e8;
-  color:var(--ink);
+  font-family:var(--font-mono);
+  font-size:.68rem;
+  padding:.25rem .55rem;
+  border:1px solid var(--border);
+  border-radius:2px;
+  color:var(--text-faint);
 }
-.tag.blue{background:var(--blue);}
-.tag.peach{background:var(--peach);}
 
 /* ============================================================
    EXPERIENCE (timeline as service log)
@@ -422,7 +427,7 @@ section:last-of-type{border-bottom:none;}
   grid-template-columns:180px 1fr;
   gap:clamp(1rem,3vw,2.5rem);
   padding:2rem 0;
-  border-bottom:1px solid var(--line);
+  border-bottom:1px solid var(--border);
 }
 .exp-item:first-child{padding-top:0;}
 .exp-item:last-child{border-bottom:none;padding-bottom:0;}
@@ -431,49 +436,43 @@ section:last-of-type{border-bottom:none;}
 }
 
 .exp-item__period{
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:600;
+  font-family:var(--font-mono);
   font-size:.78rem;
-  color:var(--muted);
+  color:var(--text-faint);
   padding-top:.15rem;
 }
 .exp-item__period .status-pill{
   display:inline-flex;align-items:center;gap:.4rem;
-  color:var(--ink);
-  background:var(--lime);
-  padding:.3rem .6rem;
-  border-radius:99px;
-  margin-bottom:.6rem;
-  font-weight:700;
+  color:var(--signal);
+  margin-bottom:.5rem;
 }
-.exp-item__period .status-pill .pulse{width:6px;height:6px;border-radius:50%;background:var(--green);}
+.exp-item__period .status-pill .pulse{width:6px;height:6px;border-radius:50%;background:var(--signal);animation:pulse 2.2s infinite;}
 
-.exp-item__role{font-size:1.2rem;color:var(--ink);margin-bottom:.2rem;letter-spacing:-.02em;}
+.exp-item__role{font-size:1.15rem;color:var(--text);margin-bottom:.15rem;}
 .exp-item__org{
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:600;
-  color:var(--green);
+  font-family:var(--font-mono);
+  color:var(--signal);
   font-size:.85rem;
   margin-bottom:1rem;
 }
-.exp-item__bullets{display:flex;flex-direction:column;gap:.6rem;}
+.exp-item__bullets{display:flex;flex-direction:column;gap:.55rem;}
 .exp-item__bullets li{
-  color:var(--muted);
+  color:var(--text-dim);
   font-size:.92rem;
   padding-left:1.3rem;
   position:relative;
   line-height:1.65;
 }
 .exp-item__bullets li::before{
-  content:'→';
+  content:'›';
   position:absolute;left:0;top:0;
-  color:var(--green);
+  color:var(--signal);
   font-weight:700;
 }
-.exp-item__bullets strong{color:var(--ink);font-weight:700;}
+.exp-item__bullets strong{color:var(--text);font-weight:600;}
 
 /* ============================================================
-   SKILLS — grouped panels
+   SKILLS — grouped mono panels
    ============================================================ */
 .skills-grid{
   display:grid;
@@ -484,24 +483,21 @@ section:last-of-type{border-bottom:none;}
 @media (max-width:560px){.skills-grid{grid-template-columns:1fr;}}
 
 .skill-panel{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  box-shadow:var(--shadow);
-  overflow:hidden;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
 }
 .skill-panel__head{
-  padding:.85rem 1.1rem;
-  border-bottom:1px solid var(--line);
+  padding:.75rem 1rem;
+  border-bottom:1px solid var(--border);
   display:flex;align-items:center;gap:.6rem;
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:600;
-  font-size:.85rem;
-  color:var(--ink);
-  background:#f9f9f5;
+  font-family:var(--font-mono);
+  font-size:.78rem;
+  color:var(--text);
+  background:var(--panel-2);
 }
-.skill-panel__head i{color:var(--green);width:1em;text-align:center;}
-.skill-panel__body{padding:1.1rem;display:flex;flex-wrap:wrap;gap:.4rem;}
+.skill-panel__head i{color:var(--signal);width:1em;text-align:center;}
+.skill-panel__body{padding:1rem;display:flex;flex-wrap:wrap;gap:.4rem;}
 
 /* ============================================================
    WORK / PORTFOLIO
@@ -514,19 +510,25 @@ section:last-of-type{border-bottom:none;}
 @media (max-width:720px){.work-grid{grid-template-columns:1fr;}}
 
 .work-card{
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  background:var(--card);
-  box-shadow:var(--shadow);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  background:var(--panel);
   overflow:hidden;
   display:block;
-  transition:transform .2s;
+  transition:border-color .2s, transform .2s;
   position:relative;
 }
-.work-card:hover{transform:translateY(-3px);}
-.work-card__body{padding:1.6rem;}
-.work-card h3{font-size:1.1rem;color:var(--ink);margin-bottom:.6rem;line-height:1.35;letter-spacing:-.02em;}
-.work-card p{color:var(--muted);font-size:.9rem;margin-bottom:1rem;line-height:1.6;}
+.work-card:hover{border-color:#5EEAD455;transform:translateY(-3px);}
+.work-card__top{
+  padding:1.5rem 1.5rem 0;
+  display:flex;justify-content:space-between;align-items:flex-start;
+}
+.work-card__index{font-family:var(--font-mono);color:var(--text-faint);font-size:.75rem;}
+.work-card__arrow{color:var(--signal);font-size:.9rem;transition:transform .2s;}
+.work-card:hover .work-card__arrow{transform:translate(3px,-3px);}
+.work-card__body{padding:.75rem 1.5rem 1.5rem;}
+.work-card h3{font-size:1.05rem;color:var(--text);margin-bottom:.6rem;line-height:1.35;}
+.work-card p{color:var(--text-dim);font-size:.88rem;margin-bottom:1rem;}
 .work-card .tag-row{display:flex;flex-wrap:wrap;gap:.4rem;}
 
 /* ============================================================
@@ -535,103 +537,94 @@ section:last-of-type{border-bottom:none;}
 .edu-grid{
   display:grid;
   grid-template-columns:1.3fr 1fr;
-  gap:1.25rem;
+  gap:2rem;
 }
 @media (max-width:800px){.edu-grid{grid-template-columns:1fr;}}
 .edu-card, .cert-card{
-  background:var(--card);
-  border:1px solid var(--line);
-  border-radius:var(--r);
-  box-shadow:var(--shadow);
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
   padding:1.75rem;
 }
 .edu-card h3, .cert-card h3{
-  font-family:'DM Sans',sans-serif;
+  font-family:var(--font-mono);
   font-size:.72rem;
-  font-weight:700;
   letter-spacing:.1em;
   text-transform:uppercase;
-  color:var(--rust);
+  color:var(--signal);
   margin-bottom:1rem;
 }
-.edu-card .deg{font-size:1.1rem;color:var(--ink);margin-bottom:.3rem;font-weight:600;}
-.edu-card .sch{color:var(--muted);font-size:.9rem;}
+.edu-card .deg{font-size:1.1rem;color:var(--text);margin-bottom:.3rem;}
+.edu-card .sch{color:var(--text-dim);font-size:.9rem;font-family:var(--font-mono);}
 .cert-card ul{display:flex;flex-direction:column;gap:.7rem;}
 .cert-card li{
-  color:var(--muted);
-  font-size:.9rem;
+  color:var(--text-dim);
+  font-size:.88rem;
   padding-left:1.3rem;
   position:relative;
 }
-.cert-card li::before{content:'✓';position:absolute;left:0;color:var(--green);font-weight:700;}
+.cert-card li::before{content:'✓';position:absolute;left:0;color:var(--signal);font-family:var(--font-mono);}
 
 /* ============================================================
    CONTACT / FOOTER
    ============================================================ */
 .contact{text-align:center;}
 .contact .section-head{margin-bottom:2.5rem;}
-.contact .eyebrow{justify-content:center;}
 .contact__email{
-  font-family:'Space Grotesk',sans-serif;
-  font-weight:700;
-  font-size:clamp(1.4rem,4vw,2.1rem);
-  color:var(--ink);
+  font-family:var(--font-mono);
+  font-size:clamp(1.3rem,4vw,2rem);
+  color:var(--signal);
   display:inline-block;
   margin-bottom:.75rem;
   word-break:break-word;
-  padding:0 .12em;
-  border-radius:8px;
-  transition:background .15s;
 }
-.contact__email:hover{background:var(--lime);}
-.contact__meta{color:var(--muted);font-size:.9rem;margin-bottom:2rem;}
+.contact__email:hover{text-decoration:underline;}
+.contact__meta{color:var(--text-dim);font-size:.9rem;margin-bottom:2rem;}
 .social-row{display:flex;gap:.9rem;justify-content:center;flex-wrap:wrap;}
 .social-row a{
   width:46px;height:46px;
-  border:1px solid var(--line);
-  background:var(--card);
-  border-radius:12px;
+  border:1px solid var(--border);
+  border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
-  color:var(--muted);
+  color:var(--text-dim);
   font-size:1.15rem;
-  box-shadow:var(--shadow);
   transition:all .15s;
 }
-.social-row a:hover{background:var(--lime);color:var(--ink);transform:translateY(-2px);}
+.social-row a:hover{border-color:var(--signal);color:var(--signal);transform:translateY(-2px);}
 
 .footer{
   text-align:center;
   padding:2rem 0 3rem;
-  font-size:.78rem;
-  color:var(--muted);
+  font-family:var(--font-mono);
+  font-size:.72rem;
+  color:var(--text-faint);
 }
-.footer .accent{color:var(--green);font-weight:700;}
+.footer .accent{color:var(--signal);}
 
 /* back to top */
 .totop{
   position:fixed;
   bottom:1.5rem;right:1.5rem;
-  width:46px;height:46px;
-  background:var(--ink);
-  border:1px solid var(--ink);
-  border-radius:12px;
+  width:44px;height:44px;
+  background:var(--panel);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
   display:flex;align-items:center;justify-content:center;
-  color:#fff;
+  color:var(--text-dim);
   opacity:0;
   pointer-events:none;
-  transition:opacity .2s, transform .15s;
+  transition:opacity .2s, border-color .15s, color .15s;
   z-index:150;
-  box-shadow:var(--shadow);
 }
 .totop.show{opacity:1;pointer-events:auto;}
-.totop:hover{transform:translateY(-2px);}
+.totop:hover{border-color:var(--signal);color:var(--signal);}
 </style>
 </head>
 <body>
 
 <!-- Mobile top bar -->
 <header class="topbar">
-  <a href="#home" class="topbar__brand"><span class="dot"></span>daud</a>
+  <a href="#home" class="topbar__brand"><span class="caret">&gt;</span>daud<span class="caret">_</span></a>
   <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">
     <i class="fas fa-bars" id="menuIcon"></i>
   </button>
@@ -651,7 +644,7 @@ section:last-of-type{border-bottom:none;}
   <!-- Desktop status rail -->
   <aside class="rail">
     <div class="rail__brand">
-      <a href="#home"><span class="dot"></span>daud</a>
+      <a href="#home"><span class="caret">&gt;</span>daud<span class="caret">_</span></a>
       <small>AI Platform Infra Eng.</small>
     </div>
     <nav class="rail__nav">
@@ -688,7 +681,9 @@ section:last-of-type{border-bottom:none;}
             </div>
           </div>
           <div class="hero__portrait">
+            <!-- <div class="hero__portrait-frame"><span>IMG_01</span><span>1:1</span></div> -->
             <img src="img/pp.jfif" alt="Portrait of Daud Farzand" onerror="this.parentElement.style.display='none'">
+            <div class="scanline"></div>
           </div>
         </div>
 
@@ -750,7 +745,7 @@ section:last-of-type{border-bottom:none;}
             <h3>AI Platform &amp; MLOps</h3>
             <p>Multi-tenant SaaS for AI workloads on FastAPI and Next.js 15, inference on Vertex AI and AWS Bedrock, shipped through GitHub Actions, GitLab CI/CD, Terraform, and ArgoCD.</p>
             <div class="tag-row">
-              <span class="tag blue">FastAPI</span><span class="tag blue">Terraform</span><span class="tag blue">ArgoCD</span>
+              <span class="tag">FastAPI</span><span class="tag">Terraform</span><span class="tag">ArgoCD</span>
             </div>
           </div>
           <div class="svc-card">
@@ -758,7 +753,7 @@ section:last-of-type{border-bottom:none;}
             <h3>Observability &amp; Cloud Infra</h3>
             <p>Docker, Kubernetes, and Helm on hybrid cloud (AWS, GCP, on-prem GPU). Prometheus, Grafana, and OpenTelemetry instrumentation tuned for inference cost, latency, and uptime.</p>
             <div class="tag-row">
-              <span class="tag peach">Prometheus</span><span class="tag peach">Grafana</span><span class="tag peach">OTel</span>
+              <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">OTel</span>
             </div>
           </div>
         </div>
@@ -857,13 +852,13 @@ section:last-of-type{border-bottom:none;}
           <div class="skill-panel">
             <div class="skill-panel__head"><i class="fas fa-code"></i> Backend / Frontend</div>
             <div class="skill-panel__body">
-              <span class="tag blue">FastAPI</span><span class="tag blue">Python 3.11+</span><span class="tag blue">SSE</span><span class="tag blue">gRPC</span><span class="tag blue">Next.js 15</span><span class="tag blue">React 19</span><span class="tag blue">TypeScript</span><span class="tag blue">Tailwind</span>
+              <span class="tag">FastAPI</span><span class="tag">Python 3.11+</span><span class="tag">SSE</span><span class="tag">gRPC</span><span class="tag">Next.js 15</span><span class="tag">React 19</span><span class="tag">TypeScript</span><span class="tag">Tailwind</span>
             </div>
           </div>
           <div class="skill-panel">
             <div class="skill-panel__head"><i class="fas fa-cloud"></i> Cloud / DevOps</div>
             <div class="skill-panel__body">
-              <span class="tag peach">Vertex AI</span><span class="tag peach">GKE</span><span class="tag peach">EKS</span><span class="tag peach">Bedrock</span><span class="tag peach">Docker</span><span class="tag peach">Kubernetes</span><span class="tag peach">Helm</span><span class="tag peach">ArgoCD</span><span class="tag peach">Terraform</span><span class="tag peach">Ansible</span><span class="tag peach">WireGuard</span>
+              <span class="tag">Vertex AI</span><span class="tag">GKE</span><span class="tag">EKS</span><span class="tag">Bedrock</span><span class="tag">Docker</span><span class="tag">Kubernetes</span><span class="tag">Helm</span><span class="tag">ArgoCD</span><span class="tag">Terraform</span><span class="tag">Ansible</span><span class="tag">WireGuard</span>
             </div>
           </div>
           <div class="skill-panel">
@@ -875,13 +870,13 @@ section:last-of-type{border-bottom:none;}
           <div class="skill-panel">
             <div class="skill-panel__head"><i class="fas fa-gauge-high"></i> Observability</div>
             <div class="skill-panel__body">
-              <span class="tag blue">Prometheus</span><span class="tag blue">Grafana</span><span class="tag blue">OpenTelemetry</span><span class="tag blue">Model drift</span>
+              <span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">OpenTelemetry</span><span class="tag">Model drift</span>
             </div>
           </div>
           <div class="skill-panel">
             <div class="skill-panel__head"><i class="fas fa-shield-halved"></i> Security / Auth</div>
             <div class="skill-panel__body">
-              <span class="tag peach">JWT</span><span class="tag peach">API keys</span><span class="tag peach">5-tier RBAC</span><span class="tag peach">OAuth2</span><span class="tag peach">Secrets mgmt</span>
+              <span class="tag">JWT</span><span class="tag">API keys</span><span class="tag">5-tier RBAC</span><span class="tag">OAuth2</span><span class="tag">Secrets mgmt</span>
             </div>
           </div>
         </div>
@@ -898,6 +893,7 @@ section:last-of-type{border-bottom:none;}
         </div>
         <div class="work-grid">
           <div class="work-card">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/01</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
             <div class="work-card__body">
               <h3>ServeLLM — privacy-first OpenAI-compatible platform</h3>
               <p>FastAPI + Next.js 15 + PgBouncer + MinIO + Ollama, SSE streaming at &lt;50ms TTFT, 5-tier RBAC.</p>
@@ -905,31 +901,35 @@ section:last-of-type{border-bottom:none;}
             </div>
           </div>
           <div class="work-card">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/02</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
             <div class="work-card__body">
               <h3>Enterprise RAG Pipeline</h3>
               <p>pgvector + Vertex AI retrieval architecture delivering a 40% accuracy lift on enterprise knowledge bases.</p>
-              <div class="tag-row"><span class="tag blue">pgvector</span><span class="tag blue">Vertex AI</span></div>
+              <div class="tag-row"><span class="tag">pgvector</span><span class="tag">Vertex AI</span></div>
             </div>
           </div>
           <div class="work-card">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/03</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
             <div class="work-card__body">
               <h3>AI/ML Observability Stack</h3>
               <p>Prometheus, Grafana, and OpenTelemetry instrumentation across inference latency, token usage, and drift.</p>
-              <div class="tag-row"><span class="tag peach">Prometheus</span><span class="tag peach">Grafana</span><span class="tag peach">OTel</span></div>
+              <div class="tag-row"><span class="tag">Prometheus</span><span class="tag">Grafana</span><span class="tag">OTel</span></div>
             </div>
           </div>
           <div class="work-card">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/04</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
             <div class="work-card__body">
               <h3>Vector Database Infrastructure</h3>
               <p>10M+ document chunks, sub-second semantic search, tuned indexing and retrieval strategy.</p>
-              <div class="tag-row"><span class="tag blue">pgvector</span><span class="tag blue">Pinecone</span></div>
+              <div class="tag-row"><span class="tag">pgvector</span><span class="tag">Pinecone</span></div>
             </div>
           </div>
           <div class="work-card" style="grid-column:1/-1;">
+            <!-- <div class="work-card__top"><span class="work-card__index">SYS/05</span><i class="fas fa-arrow-up-right-from-square work-card__arrow"></i></div> -->
             <div class="work-card__body">
               <h3>Hybrid-Cloud LLM Deployment</h3>
               <p>AWS + GCP + on-prem GPU (Proxmox) linked via WireGuard, Terraform-provisioned, centrally observed.</p>
-              <div class="tag-row"><span class="tag peach">Terraform</span><span class="tag peach">WireGuard</span><span class="tag peach">Proxmox</span></div>
+              <div class="tag-row"><span class="tag">Terraform</span><span class="tag">WireGuard</span><span class="tag">Proxmox</span></div>
             </div>
           </div>
         </div>
@@ -981,7 +981,7 @@ section:last-of-type{border-bottom:none;}
 
     <footer class="footer">
       <div class="container">
-        <span class="accent">·</span> build 2026.09 <span class="accent">·</span> made with vanilla HTML/CSS <span class="accent">·</span> no framework overhead
+        <!-- <span class="accent">&gt;</span> build 2026.08 <span class="accent">·</span> made with vanilla HTML/CSS <span class="accent">·</span> no framework overhead -->
       </div>
     </footer>
 
